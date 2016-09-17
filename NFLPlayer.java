@@ -1,3 +1,4 @@
+import java.util.*;
 /*
  * Author: Jennifer Davis
  * CST-100 Assignment Topic 2
@@ -10,7 +11,12 @@
 public class NFLPlayer {
 
 	public static void main(String[] args) {
-
+		
+		PlayerManager manage = new PlayerManager();
+	
+		System.out.println("There are " + manage.Players.length + " players to choose from.");
+		System.out.println("\nList of Players:\n");
+		Arrays.stream(manage.Players).forEach(System.out::println);
 	}
 	
 	//Players 
@@ -46,6 +52,5 @@ public class NFLPlayer {
 	String position8 = "DB";
 	String position9 = "K";
 	String position10 = "P";
-
 	
 }
