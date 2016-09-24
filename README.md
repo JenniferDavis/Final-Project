@@ -1,5 +1,3 @@
 # Final-Project
 This is a file where the NFL draft coach can see all available players including position and statistics.
-The available players can be added to the chosen list by clicking add.
-Players on the chosen list can be removed by clicking remove.
-A finalized list is displayed with the option to restart at the end.
+After game is started, a list of available players  including positions and stats are  displayed.  User can enter a player number to add a player from the Available List to the Chosen List or enter "C" to see the Chosen List.  While viewing the  Chosen List, the user can enter a player number to remove a player from the Chosen List and place back on the Available  Player List , enter "A" to  view the Available Player List or "F" to finalize the draft list.  Once the last player is added to the Chosen List, a "Chosen List is full" message is shown with the option to enter "F" to finalize the list or "C" to view the Chosen List screen and either remove a player or finalize the list.  After the list is finalized, the program is terminated.
