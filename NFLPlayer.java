@@ -11,7 +11,7 @@ import java.util.*;
  */
 
 
-public class NFLPlayer {
+public abstract class NFLPlayer {
 
 	public static void main(String[] args) {
 		// Create PlayerManager object
