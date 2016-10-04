@@ -6,217 +6,423 @@ public class PlayerManager extends NFLPlayer{
 	
 		PlayerManager();
 		System.out.println("Number of Available Players: " + players.size());
-		OffensivePlayers offensiveList = new OffensivePlayers();
+		//OffensivePlayers offensiveList = new OffensivePlayers();
 		//System.out.println("Offensive Players list:\n " + offensiveList.listOffensivePlayers());
-		
-
-		
+	
 	}
 	
-	// array to hold list of available players
-	public static List players = new ArrayList();
-	
-	//constructor
+	//constructor automatically creates players list
 	public static void PlayerManager()
 	{
 		CreatePlayer();
 	}
 	
-	// create player method to add players to array
+	// array to hold list of available players
+	public static List players = new ArrayList();
+	
+	// add players to array
 	public static void CreatePlayer()
 	{
 	//Quarterbacks
-		NFLPlayer.NFLPlayer("Blake Bortles", "QB", 0);
-		//	Bortles, Blake	ACT	TDS	7	INT	6	YDS	1,050	RTG	79.4	  JAX
+		PlayerManager blakeBortles = new PlayerManager();
+		blakeBortles.NFLPlayer("Blake Bortles", "QB");
+		blakeBortles.setYards(1050);
+		blakeBortles.setInterceptions(6);
+		blakeBortles.setTouchdowns(7);
+		blakeBortles.setRating(79.4);
+		blakeBortles.setTeam("JAX");
+		blakeBortles.setAverageYardsPerGame(blakeBortles.getYards());
 		players.add("Blake Bortles");
 		
-		NFLPlayer.NFLPlayer("Trevone Boykin", "QB", 0);
-		//	Boykin, Trevone	ACT	TDS	1	INT	1	YDS	65	RTG	94.2	SEA
-		players.add("Trevone Boykin");
+		PlayerManager mattRyan = new PlayerManager();
+		mattRyan.NFLPlayer("Matt Ryan", "QB");
+		mattRyan.setYards(1473);
+		mattRyan.setInterceptions(2);
+		mattRyan.setTouchdowns(11);
+		mattRyan.setRating(126.3);
+		mattRyan.setTeam("ATL");
+		mattRyan.setAverageYardsPerGame(mattRyan.getYards());
+		players.add("Matt Ryan");
 		
-		NFLPlayer.NFLPlayer("Sam Bradford", "QB", 0);
-		//	Bradford, Sam	ACT	TDS	3	INT	0	YDS	457	RTG	107.8	MIN
+		PlayerManager samBradford = new PlayerManager();
+		samBradford.NFLPlayer("Sam Bradford", "QB");
+		samBradford.setYards(457);
+		samBradford.setInterceptions(0);
+		samBradford.setTouchdowns(3);
+		samBradford.setRating(107.8);
+		samBradford.setTeam("MIN");
+		samBradford.setAverageYardsPerGame(samBradford.getYards());
 		players.add("Sam Bradford");
 		
-		NFLPlayer.NFLPlayer("Drew Brees", "QB", 0);
-		// 	Brees, Drew	ACT	TDS	10	INT	3	YDS	1,269	RTG	98.9	NO
+		PlayerManager drewBrees = new PlayerManager();
+		drewBrees.NFLPlayer("Drew Brees", "QB");
+		drewBrees.setYards(1269);
+		drewBrees.setInterceptions(3);
+		drewBrees.setTouchdowns(10);
+		drewBrees.setRating(98.9);
+		drewBrees.setTeam("NO");
+		drewBrees.setAverageYardsPerGame(drewBrees.getYards());
 		players.add("Drew Brees");
 		
-		NFLPlayer.NFLPlayer("Derek Barr", "QB", 0);
-		// Carr, Derek	ACT	TDS	9	INT	1	YDS	1,066	RTG	104.6	OAK
-		players.add("Derek Barr");
+		PlayerManager derekCarr = new PlayerManager();
+		derekCarr.NFLPlayer("Derek Carr", "QB");
+		derekCarr.setYards(1066);
+		derekCarr.setInterceptions(1);
+		derekCarr.setTouchdowns(9);
+		derekCarr.setRating(104.6);
+		derekCarr.setTeam("OAK");
+		derekCarr.setAverageYardsPerGame(derekCarr.getYards());
+		players.add("Derek Carr");
 		
 		
 	// Running Backs
-		NFLPlayer.NFLPlayer("Ameer Abdullah", "RB", 7);
-		//  Abdullah, Ameer	RES	CAR	18	YDS	101	AVG	5.6	TDS	0	DET
+		PlayerManager ameerAbdullah = new PlayerManager();
+		ameerAbdullah.NFLPlayer("Ameer Abdullah", "RB");
+		ameerAbdullah.setCareerValue(18);
+		ameerAbdullah.setYards(101);
+		ameerAbdullah.setAverageYardsPerCar(ameerAbdullah.getYards(), ameerAbdullah.getCareerValue());
+		ameerAbdullah.setTouchdowns(0);
+		ameerAbdullah.setTeam("DET");
 		players.add("Ameer Abdullah");
 		
-		NFLPlayer.NFLPlayer("Jay Ajayi", "RB", 7);
-		//  Ajayi, Jay	ACT	CAR	18	YDS	75	AVG	4.2	TDS	1	MIA
+		PlayerManager jayAjayi = new PlayerManager();
+		jayAjayi.NFLPlayer("Jay Ajayi", "RB");
+		jayAjayi.setCareerValue(18);
+		jayAjayi.setYards(75);
+		jayAjayi.setAverageYardsPerCar(jayAjayi.getYards(), jayAjayi.getCareerValue());
+		jayAjayi.setTouchdowns(1);
+		jayAjayi.setTeam("MIA");
 		players.add("Jay Ajayi");
 		
-		NFLPlayer.NFLPlayer("Javorius Allen", "RB", 7);
-		//  Allen, Javorius	ACT	CAR	3	YDS	13	AVG	4.3	TDS	0	BAL
+		PlayerManager javoriusAllen = new PlayerManager();
+		javoriusAllen.NFLPlayer("Javorius Allen", "RB");
+		javoriusAllen.setCareerValue(3);
+		javoriusAllen.setYards(13);
+		javoriusAllen.setAverageYardsPerCar(javoriusAllen.getYards(), javoriusAllen.getCareerValue());
+		javoriusAllen.setTouchdowns(0);
+		javoriusAllen.setTeam("BAL");
 		players.add("Javorius Allen");
 		
-		NFLPlayer.NFLPlayer("Cameron Artis-Payne", "RB", 7);
-		//  Artis-Payne, Cameron	ACT	CAR	18	YDS	59	AVG	3.3	TDS	0	CAR
+		PlayerManager cameronArtisPayne = new PlayerManager();
+		cameronArtisPayne.NFLPlayer("Cameron Artis-Payne", "RB");
+		cameronArtisPayne.setCareerValue(18);
+		cameronArtisPayne.setYards(59);
+		cameronArtisPayne.setAverageYardsPerCar(cameronArtisPayne.getYards(), cameronArtisPayne.getCareerValue());
+		cameronArtisPayne.setTouchdowns(0);
+		cameronArtisPayne.setTeam("CAR");
 		players.add("Cameron Artis-Payne");
 		
-		NFLPlayer.NFLPlayer("Matt Asiata", "RB", 7);
-		//  Asiata, Matt	ACT	CAR	16	YDS	42	AVG	2.6	TDS	0	MIN
+		PlayerManager mattAsiata = new PlayerManager();
+		mattAsiata.NFLPlayer("Matt Asiata", "RB");
+		mattAsiata.setCareerValue(16);
+		mattAsiata.setYards(42);
+		mattAsiata.setAverageYardsPerCar(mattAsiata.getYards(), mattAsiata.getCareerValue());
+		mattAsiata.setTouchdowns(0);
+		mattAsiata.setTeam("MIN");
 		players.add("Matt Asiata");
 		
 	// tight Ends
-		NFLPlayer.NFLPlayer("Gary Barnidge", "TE", 5);
-		// Barnidge, Gary	ACT	REC	16	YDS	160	AVG	10.0	TDS	0	CLE
+		PlayerManager garyBarnidge = new PlayerManager();
+		garyBarnidge.NFLPlayer("Gary Barnidge", "TE");
+		garyBarnidge.setReceptions(16);
+		garyBarnidge.setYards(160);
+		garyBarnidge.setAverageYardsPerReception(garyBarnidge.getYards(), garyBarnidge.getReceptions());
+		garyBarnidge.setTouchdowns(0);
+		garyBarnidge.setTeam("CLE");
 		players.add("Gary Barnidge");
 		
-		NFLPlayer.NFLPlayer("Blake Bell", "TE", 5);
-		// Bell, Blake	ACT	REC	1	YDS	6	AVG	6.0	TDS	0	SF
+		PlayerManager blakeBell = new PlayerManager();
+		blakeBell.NFLPlayer("Blake Bell", "TE");
+		blakeBell.setReceptions(1);
+		blakeBell.setYards(6);
+		blakeBell.setAverageYardsPerReception(blakeBell.getYards(), blakeBell.getReceptions());
+		blakeBell.setTouchdowns(0);
+		blakeBell.setTeam("SF");
 		players.add("Blake Bell");
 		
-		NFLPlayer.NFLPlayer("Martellus Bennett", "TE", 5);
-		// Bennett, Martellus	ACT	REC	15	YDS	247	AVG	16.5	TDS	1	NE
+		PlayerManager martellusBennett = new PlayerManager();
+		martellusBennett.NFLPlayer("Martellus Bennett", "TE");
+		martellusBennett.setReceptions(15);
+		martellusBennett.setYards(247);
+		martellusBennett.setAverageYardsPerReception(martellusBennett.getYards(), martellusBennett.getReceptions());
+		martellusBennett.setTouchdowns(1);
+		martellusBennett.setTeam("NE");
 		players.add("Martellus Bennett");
 		
-		NFLPlayer.NFLPlayer("Brent Celek", "TE", 5);
-		// Celek, Brent	ACT	REC	4	YDS	72	AVG	18.0	TDS	0	PHI
+		PlayerManager brentCelek = new PlayerManager();
+		brentCelek.NFLPlayer("Brent Celek", "TE");
+		brentCelek.setReceptions(4);
+		brentCelek.setYards(72);
+		brentCelek.setAverageYardsPerReception(brentCelek.getYards(), brentCelek.getReceptions());
+		brentCelek.setTouchdowns(0);
+		brentCelek.setTeam("PHI");
 		players.add("Brent Celek");
 		
-		NFLPlayer.NFLPlayer("Garrett Celek", "TE", 5);
-		// Celek, Garrett	ACT	REC	10	YDS	131	AVG	13.1	TDS	0	SF
+		PlayerManager garrettCelek = new PlayerManager();
+		garrettCelek.NFLPlayer("Garrett Celek", "TE");
+		garrettCelek.setReceptions(10);
+		garrettCelek.setYards(131);
+		garrettCelek.setAverageYardsPerReception(garrettCelek.getYards(), garrettCelek.getReceptions());
+		garrettCelek.setTouchdowns(0);
+		garrettCelek.setTeam("SF");
 		players.add("Garrett Celek");
 		
-	// wide receivers 
-		NFLPlayer.NFLPlayer("Doug Baldwin", "WR", 6);
-		// Baldwin, Doug	ACT	REC	24	YDS	330	AVG	13.8	TDS	2	SEA
+	// wide receivers
+		PlayerManager dougBaldwin = new PlayerManager();
+		dougBaldwin.NFLPlayer("Doug Baldwin", "WR");
+		dougBaldwin.setReceptions(24);
+		dougBaldwin.setYards(330);
+		dougBaldwin.setAverageYardsPerReception(dougBaldwin.getYards(), dougBaldwin.getReceptions());
+		dougBaldwin.setTouchdowns(2);
+		dougBaldwin.setTeam("SEA");
 		players.add("Doug Baldwin");
 		
-		NFLPlayer.NFLPlayer("Cole Beasley", "WR", 6);
-		// Beasley, Cole	ACT	REC	23	YDS	279	AVG	12.1	TDS	0	DAL
+		PlayerManager coleBeasley = new PlayerManager();
+		coleBeasley.NFLPlayer("Cole Beasley", "WR");
+		coleBeasley.setReceptions(23);
+		coleBeasley.setYards(279);
+		coleBeasley.setAverageYardsPerReception(coleBeasley.getYards(), coleBeasley.getReceptions());
+		coleBeasley.setTouchdowns(0);
+		coleBeasley.setTeam("DAL");
 		players.add("Cole Beasley");
 		
-		NFLPlayer.NFLPlayer("Odell Beckham", "WR", 6);
-		// Beckham, Odell	ACT	REC	19	YDS	280	AVG	14.7	TDS	0	NYG
+		PlayerManager odellBeckham = new PlayerManager();
+		odellBeckham.NFLPlayer("Odell Beckham", "WR");
+		odellBeckham.setReceptions(19);
+		odellBeckham.setYards(280);
+		odellBeckham.setAverageYardsPerReception(odellBeckham.getYards(), odellBeckham.getReceptions());
+		odellBeckham.setTouchdowns(0);
+		odellBeckham.setTeam("NYG");
 		players.add("Odell Beckham");
 		
-		NFLPlayer.NFLPlayer("Kelvin Benjamin", "WR", 6);
-		// Benjamin, Kelvin	ACT	REC	16	YDS	238	AVG	14.9	TDS	4	CAR
+		PlayerManager kelvinBenjamin = new PlayerManager();
+		kelvinBenjamin.NFLPlayer("Kelvin Benjamin", "WR");
+		kelvinBenjamin.setReceptions(16);
+		kelvinBenjamin.setYards(238);
+		kelvinBenjamin.setAverageYardsPerReception(kelvinBenjamin.getYards(), kelvinBenjamin.getReceptions());
+		kelvinBenjamin.setTouchdowns(4);
+		kelvinBenjamin.setTeam("CAR");
 		players.add("Kelvin Benjamin");
 		
-		NFLPlayer.NFLPlayer("Travis Benjamin", "WR", 6);
-		// Benjamin, Travis	ACT	REC	21	YDS	277	AVG	13.2	TDS	2	SD
+		PlayerManager travisBenjamin = new PlayerManager();
+		travisBenjamin.NFLPlayer("Travis Benjamin", "WR");
+		travisBenjamin.setReceptions(21);
+		travisBenjamin.setYards(277);
+		travisBenjamin.setAverageYardsPerReception(travisBenjamin.getYards(), travisBenjamin.getReceptions());
+		travisBenjamin.setTouchdowns(2);
+		travisBenjamin.setTeam("SD");
 		players.add("Travis Benjamin");
 		
 		
 	// 	Offensive linebacker	
-		NFLPlayer.NFLPlayer("Branden Albert", "OL", 8);
-		// Albert, Branden	ACT	G	3	GS	3	MIA
+		PlayerManager brandenAlbert = new PlayerManager();
+		brandenAlbert.NFLPlayer("Branden Albert", "OL");
+		brandenAlbert.setGamesPlayed(3);
+		brandenAlbert.setGamesStarted(3);
+		brandenAlbert.setTeam("MIA");
 		players.add("Branden Albert");
 		
-		NFLPlayer.NFLPlayer("Vadal Alexander", "OL", 8);
-		// Alexander, Vadal	ACT	G	3	GS	1	OAK
+		PlayerManager vadalAlexander = new PlayerManager();
+		vadalAlexander.NFLPlayer("Vadal Alexander", "OL");
+		vadalAlexander.setGamesPlayed(3);
+		vadalAlexander.setGamesStarted(1);
+		vadalAlexander.setTeam("OAK");
 		players.add("Vadal Alexander");
 		
-		NFLPlayer.NFLPlayer("Allen Barbre", "OL", 8);
-		// Barbre, Allen	ACT	G	3	GS	3	PHI
+		PlayerManager allenBarbre = new PlayerManager();
+		allenBarbre.NFLPlayer("Allen Barbre", "OL");
+		allenBarbre.setGamesPlayed(3);
+		allenBarbre.setGamesStarted(3);
+		allenBarbre.setTeam("PHI");
 		players.add("Allen Barbre");
 		
-		NFLPlayer.NFLPlayer("Don Barclay", "OL", 8);
-		// Barclay, Don	ACT	G	3	GS	0	GB
+		PlayerManager donBarclay = new PlayerManager();
+		donBarclay.NFLPlayer("Don Barclay", "OL");
+		donBarclay.setGamesPlayed(3);
+		donBarclay.setGamesStarted(0);
+		donBarclay.setTeam("GB");
 		players.add("Don Barclay");
 		
-		NFLPlayer.NFLPlayer("Tim Barnes", "OL", 8);
-		// Barnes, Tim	ACT	G	4	GS	4	LA
+		PlayerManager timBarnes = new PlayerManager();
+		timBarnes.NFLPlayer("Tim Barnes", "OL");
+		timBarnes.setGamesPlayed(4);
+		timBarnes.setGamesStarted(4);
+		timBarnes.setTeam("LA");
 		players.add("Tim Barnes");
 		
 		
 	// defensive linebackers
-		NFLPlayer.NFLPlayer("Geno Atkins", "DL", 10);
-		// Atkins, Geno	ACT	TCKL	11	SCK	2.5	FF	0	INT	--	CIN
+		PlayerManager genoAtkins = new PlayerManager();
+		genoAtkins.NFLPlayer("Geno Atkins", "DL");
+		genoAtkins.setTackles(11);
+		genoAtkins.setSacks(2.5);
+		genoAtkins.setForcedFumbles(0);
+		genoAtkins.setTeam("CIN");
 		players.add("Geno Atkins");
 		
-		NFLPlayer.NFLPlayer("Denico Autry", "DL", 10);
-		// Autry, Denico	ACT	TCKL	5	SCK	1.0	FF	0	INT	--	OAK
+		PlayerManager denicoAutry = new PlayerManager();
+		denicoAutry.NFLPlayer("Denico Autry", "DL");
+		denicoAutry.setTackles(5);
+		denicoAutry.setSacks(1.0);
+		denicoAutry.setForcedFumbles(0);
+		denicoAutry.setTeam("OAK");
 		players.add("Denico Autry");
 		
-		NFLPlayer.NFLPlayer("Cliff Avril", "DL", 10);
-		// Avril, Cliff	ACT	TCKL	10	SCK	2.0	FF	1	INT	--	SEA
+		PlayerManager cliffAvril = new PlayerManager();
+		cliffAvril.NFLPlayer("Cliff Avril", "DL");
+		cliffAvril.setTackles(10);
+		cliffAvril.setSacks(2.0);
+		cliffAvril.setForcedFumbles(1);
+		cliffAvril.setTeam("SEA");
 		players.add("Cliff Avril");
 		
-		NFLPlayer.NFLPlayer("Robert Ayers", "DL", 10);
-		// Ayers, Robert	ACT	TCKL	4	SCK	1.0	FF	0	INT	--	TB
+		PlayerManager robertAyers = new PlayerManager();
+		robertAyers.NFLPlayer("Robert Ayers", "DL");
+		robertAyers.setTackles(4);
+		robertAyers.setSacks(1.0);
+		robertAyers.setForcedFumbles(0);
+		robertAyers.setTeam("TB");
 		players.add("Robert Ayers");
 		
-		NFLPlayer.NFLPlayer("Jonathan Babineaux", "DL", 10);
-		// Babineaux, Jonathan	ACT	TCKL	5	SCK	0.0	FF	0	INT	--	ATL
+		PlayerManager jonathanBabineaux = new PlayerManager();
+		jonathanBabineaux.NFLPlayer("Jonathan Babineaux", "DL");
+		jonathanBabineaux.setTackles(5);
+		jonathanBabineaux.setSacks(0.0);
+		jonathanBabineaux.setForcedFumbles(0);
+		jonathanBabineaux.setTeam("ATL");
 		players.add("Jonathan Babineaux");
 	
-	// Linebackers
-	
-		NFLPlayer.NFLPlayer("D.J. Alexander", "LB", 1);
-		// Alexander, D.J.	ACT	TCKL	2	SCK	0.0	FF	0	INT	--	KC
+	// Linebackers	
+		PlayerManager djAlexander = new PlayerManager();
+		djAlexander.NFLPlayer("D.J. Alexander", "LB");
+		djAlexander.setTackles(2);
+		djAlexander.setSacks(0.0);
+		djAlexander.setForcedFumbles(0);
+		djAlexander.setTeam("KC");
 		players.add("D.J. Alexander");
 		
-		NFLPlayer.NFLPlayer("Lorenzo Alexander", "LB", 1);
-		// Alexander, Lorenzo	ACT	TCKL	21	SCK	4.0	FF	2	INT	--	BUF
+		PlayerManager lorenzoAlexander = new PlayerManager();
+		lorenzoAlexander.NFLPlayer("Lorenzo Alexander", "LB");
+		lorenzoAlexander.setTackles(21);
+		lorenzoAlexander.setSacks(4.0);
+		lorenzoAlexander.setForcedFumbles(2);
+		lorenzoAlexander.setTeam("BUF");
 		players.add("Lorenzo Alexander");
 		
-		NFLPlayer.NFLPlayer("Kwon Alexander", "LB", 1);
-		// Alexander, Kwon	ACT	TCKL	38	SCK	2.0	FF	0	INT	1	TB
+		PlayerManager kwonAlexander = new PlayerManager();
+		kwonAlexander.NFLPlayer("Kwon Alexander", "LB");
+		kwonAlexander.setTackles(38);
+		kwonAlexander.setSacks(2.0);
+		kwonAlexander.setForcedFumbles(0);
+		kwonAlexander.setInterceptions(1);
+		kwonAlexander.setTeam("TB");
 		players.add("Kwon Alexander");
 		
-		NFLPlayer.NFLPlayer("Kiko Alonso", "LB", 1);
-		// Alonso, Kiko	ACT	TCKL	38	SCK	0.0	FF	0	INT	--	MIA
+		PlayerManager kikoAlonso = new PlayerManager();
+		kikoAlonso.NFLPlayer("Kiko Alonso", "LB");
+		kikoAlonso.setTackles(38);
+		kikoAlonso.setSacks(0.0);
+		kikoAlonso.setForcedFumbles(0);
+		kikoAlonso.setTeam("MIA");
 		players.add("Kiko Alonso");
 		
-		NFLPlayer.NFLPlayer("Jonathan Anderson", "LB", 1);
-		// Anderson, Jonathan	DEV	TCKL	4	SCK	0.0	FF	0	INT	--	CHI
+		PlayerManager jonathanAnderson = new PlayerManager();
+		jonathanAnderson.NFLPlayer("Jonathan Anderson", "LB");
+		jonathanAnderson.setTackles(4);
+		jonathanAnderson.setSacks(0.0);
+		jonathanAnderson.setForcedFumbles(0);
+		jonathanAnderson.setTeam("CHI");
 		players.add("Jonathan Anderson");
 		
 		
 	// Defensive backers
-		NFLPlayer.NFLPlayer("Bene' Benwikere", "DB", 1);
-		// Benwikere, Bene'	ACT	TCKL	10	SCK	0.0	FF	0	INT	1	CAR
+		PlayerManager beneBenwikere = new PlayerManager();
+		beneBenwikere.NFLPlayer("Bene' Benwikere", "DB");
+		beneBenwikere.setTackles(10);
+		beneBenwikere.setSacks(0.0);
+		beneBenwikere.setForcedFumbles(0);
+		beneBenwikere.setInterceptions(1);
+		beneBenwikere.setTeam("CAR");
 		players.add("Bene' Benwikere");
 		
-		NFLPlayer.NFLPlayer("Nat Berhe", "DB", 1);
-		// Berhe, Nat	ACT	TCKL	14	SCK	0.0	FF	1	INT	--	NYG
+		PlayerManager natBerhe = new PlayerManager();
+		natBerhe.NFLPlayer("Nat Berhe", "DB");
+		natBerhe.setTackles(14);
+		natBerhe.setSacks(0.0);
+		natBerhe.setForcedFumbles(1);
+		natBerhe.setTeam("NYG");
 		players.add("Nat Berhe");
 		
-		NFLPlayer.NFLPlayer("Eric Berry", "DB", 1);
-		// Berry, Eric	ACT	TCKL	17	SCK	0.0	FF	0	INT	1	KC
+		PlayerManager ericBerry = new PlayerManager();
+		ericBerry.NFLPlayer("Eric Berry", "DB");
+		ericBerry.setTackles(17);
+		ericBerry.setSacks(0.0);
+		ericBerry.setForcedFumbles(0);
+		ericBerry.setInterceptions(1);
+		ericBerry.setTeam("KC");
 		players.add("Eric Berry");
 		
-		NFLPlayer.NFLPlayer("Antoine Bethea", "DB", 1);
-		// Bethea, Antoine	ACT	TCKL	28	SCK	0.0	FF	1	INT	1	SF
+		PlayerManager antoineBethea = new PlayerManager();
+		antoineBethea.NFLPlayer("Antoine Bethea", "DB");
+		antoineBethea.setTackles(28);
+		antoineBethea.setSacks(0.0);
+		antoineBethea.setForcedFumbles(1);
+		antoineBethea.setInterceptions(1);
+		antoineBethea.setTeam("SF");
 		players.add("Antoine Bethea");
 		
-		NFLPlayer.NFLPlayer("Justin Bethel", "DB", 1);
-		// Bethel, Justin	ACT	TCKL	4	SCK	0.0	FF	0	INT	--	ARI
+		PlayerManager justinBethel = new PlayerManager();
+		justinBethel.NFLPlayer("Justin Bethel", "DB");
+		justinBethel.setTackles(4);
+		justinBethel.setSacks(0.0);
+		justinBethel.setForcedFumbles(0);
+		justinBethel.setTeam("ARI");
 		players.add("Justin Bethel");
 		
 	// Kickers	
-		NFLPlayer.NFLPlayer("Josh Brown", "K", 1);
-		// Brown, Josh	ACT	FGA	6	FGM	5	PCT	83.3	LNG	48	NYG
+		PlayerManager joshBrown = new PlayerManager();
+		joshBrown.NFLPlayer("Josh Brown", "K");
+		joshBrown.setFieldGoalsAttempted(6);
+		joshBrown.setFieldGoalsMade(5);
+		joshBrown.setPercentOfGoalsMade(joshBrown.getFieldGoalsMade(), joshBrown.getFieldGoalsAttempted());
+		joshBrown.setLongGain(48);
+		justinBethel.setTeam("NYG");
 		players.add("Josh Brown");
 	
-		NFLPlayer.NFLPlayer("Matt Bryant", "K", 1);
-		// Bryant, Matt	ACT	FGA	8	FGM	8	PCT	100.0	LNG	53	ATL
-		players.add("Matt Bryant");
+		PlayerManager dustinHopkins = new PlayerManager();
+		dustinHopkins.NFLPlayer("Dustin Hopkins", "K");
+		dustinHopkins.setFieldGoalsAttempted(12);
+		dustinHopkins.setFieldGoalsMade(12);
+		dustinHopkins.setPercentOfGoalsMade(dustinHopkins.getFieldGoalsMade(), dustinHopkins.getFieldGoalsAttempted());
+		dustinHopkins.setLongGain(49);
+		dustinHopkins.setTeam("WAS");
+		players.add("Dustin Hopkins");
 		
-		NFLPlayer.NFLPlayer("Randy Bullock", "K", 1);
-		// Bullock, Randy	CUT	FGA	0	FGM	0	PCT	--	LNG	0	NYG
-		players.add("Randy Bullock");
+		PlayerManager mikeNugent = new PlayerManager();
+		mikeNugent.NFLPlayer("Mike Nugent", "K");
+		mikeNugent.setFieldGoalsAttempted(13);
+		mikeNugent.setFieldGoalsMade(12);
+		mikeNugent.setPercentOfGoalsMade(mikeNugent.getFieldGoalsMade(), mikeNugent.getFieldGoalsAttempted());
+		mikeNugent.setLongGain(47);
+		mikeNugent.setTeam("CIN");
+		players.add("Mike Nugent");
 		
-		NFLPlayer.NFLPlayer("Dan Carpenter", "K", 1);
-		// Carpenter, Dan	ACT	FGA	8	FGM	6	PCT	75.0	LNG	45	BUF
+		PlayerManager danCarpenter = new PlayerManager();
+		danCarpenter.NFLPlayer("Dan Carpenter", "K");
+		danCarpenter.setFieldGoalsAttempted(8);
+		danCarpenter.setFieldGoalsMade(6);
+		danCarpenter.setPercentOfGoalsMade(danCarpenter.getFieldGoalsMade(), danCarpenter.getFieldGoalsAttempted());
+		danCarpenter.setLongGain(45);
+		danCarpenter.setTeam("BUF");
 		players.add("Dan Carpenter");
 		
-		NFLPlayer.NFLPlayer("Chandler Catanzaro", "K", 1);
-		// Catanzaro, Chandler	ACT	FGA	6	FGM	5	PCT	83.3	LNG	60	ARI
+		PlayerManager chandlerCatanzaro = new PlayerManager();
+		chandlerCatanzaro.NFLPlayer("Chandler Catanzaro", "K");
+		chandlerCatanzaro.setFieldGoalsAttempted(6);
+		chandlerCatanzaro.setFieldGoalsMade(5);
+		chandlerCatanzaro.setPercentOfGoalsMade(chandlerCatanzaro.getFieldGoalsMade(), chandlerCatanzaro.getFieldGoalsAttempted());
+		chandlerCatanzaro.setLongGain(60);
+		chandlerCatanzaro.setTeam("ARI");
 		players.add("Chandler Catanzaro");	
 	
 	}
@@ -227,8 +433,5 @@ public class PlayerManager extends NFLPlayer{
 		return ("Number of Available Players: " + players.size());
  	}
 	
-	//public static String getPlayersList()
-	//{
-	//	return (players);
-	//}
+	
 }
