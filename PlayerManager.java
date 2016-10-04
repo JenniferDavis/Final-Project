@@ -5,8 +5,11 @@ public class PlayerManager extends NFLPlayer{
 	public static void main(String[] args) {
 	
 		PlayerManager();
-		//PlayerManager.toString();
 		System.out.println("Number of Available Players: " + players.size());
+		OffensivePlayers offensiveList = new OffensivePlayers();
+		//System.out.println("Offensive Players list:\n " + offensiveList.listOffensivePlayers());
+		
+
 		
 	}
 	
@@ -223,4 +226,9 @@ public class PlayerManager extends NFLPlayer{
 	{
 		return ("Number of Available Players: " + players.size());
  	}
+	
+	//public static String getPlayersList()
+	//{
+	//	return (players);
+	//}
 }
