@@ -9,7 +9,7 @@
  * Final list is displayed and program exits.
  */
 
-public abstract class NFLPlayer
+public abstract class NFLPlayer implements Celebrator
 {
  	// variables
  	private static String name;
@@ -36,7 +36,31 @@ public abstract class NFLPlayer
  	public static String team;
  	public static double averageYardsPerGame;
  	
- 	
+ 	//implement celebrator
+ 	public void Celebrate()
+	{
+ 		System.out.println(name + " says thank you to celebrate his draft.");
+	}
+ 	public void celebration1()
+ 	{
+ 		System.out.println(name + " dances to celebrate his draft.");
+ 	}
+	public void celebration2()
+	{
+		System.out.println(name + " blows kisses to celebrate his draft.");
+	}
+	public void celebration3()
+	{
+		System.out.println(name + " bows his head to celebrate his draft.");
+	}
+	public void celebration4()
+	{
+		System.out.println(name + " claps to celebrate his draft.");
+	}
+	public void celebration5()
+	{
+		System.out.println(name + " nods his head to celebrate his draft.");	
+	}
  	
  	// constructors
  	public NFLPlayer()
