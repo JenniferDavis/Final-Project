@@ -1,4 +1,4 @@
-
+// FINAL PROJECT
 interface Celebrator {
 
 	// players celebrate being drafted

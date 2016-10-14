@@ -1,44 +1,287 @@
+// FINAL PROJECT
 import java.util.*;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
-public class PlayerManager extends NFLPlayer{
+public class PlayerManager extends NFLPlayer implements Celebrator{	
+	
+	// Create player objects to hold player attributes
+	static ArrayList<NFLPlayer> players = new ArrayList<>();
+	static ArrayList<NFLPlayer> chosenPlayers = new ArrayList<>();
 	
 	public static void main(String[] args) {
+		startGame();
+				
+	}
+
 	
-		PlayerManager();
-		System.out.println("Number of Available Players: " + players.length);
-		
-		//print list of players
-		System.out.println("\nList of Available Players: \n");
-		for (int i = 1; i < players.length; i++)
+	public static void addToChosenList(int x)
+	{
+		// add to the chosen list
+		NFLPlayer y = players.get(x);
+		chosenPlayers.add(y);
+		y.setArrayIndex(chosenPlayers.indexOf(y));
+		// print celebration of draft
+		Random r = new Random();
+		int randomCelebrator = r.nextInt(5);
+		printCelebration(randomCelebrator, x);				
+				
+		// remove from the available list
+		NFLPlayer z = players.get(x);
+		players.remove(z);
+		// reset index numbers for available list
+		for (int i = 0; i < players.size(); i++)
 		{
-			System.out.println("\t" + players[i]);
-			i++;
+			players.get(i).setArrayIndex(i);
+		}			
+	}
+	
+	public static void removeFromChosenList(int x)
+	{
+		// add to the chosen list
+		NFLPlayer y = chosenPlayers.get(x);
+		players.add(y);
+		y.setArrayIndex(players.indexOf(y));
+				
+		// remove from the available list
+		NFLPlayer z = chosenPlayers.get(x);
+		chosenPlayers.remove(z);
+		// reset index numbers for available list
+		for (int i = 0; i < chosenPlayers.size(); i++)
+		{
+			chosenPlayers.get(i).setArrayIndex(i);
+		}				
+	}
+	
+	
+	
+	
+	@Override
+	public String toString()
+	{
+		return ("This is the toString method in PlayerManager");
+	}
+ 	
+	// prints the random celebrations when player is drafted
+	public static void printCelebration(int newRandomCelebrator, int newUsersChoice)
+	{
+		if (newRandomCelebrator == 0)
+		{
+			players.get(newUsersChoice).celebrate();
+		}
+		else if (newRandomCelebrator == 1)
+		{
+			players.get(newUsersChoice).celebration1();
+		}
+		else if (newRandomCelebrator == 2)
+		{
+			players.get(newUsersChoice).celebration2();
+		}
+		else if (newRandomCelebrator == 3)
+		{
+			players.get(newUsersChoice).celebration3();
+		}
+		else if (newRandomCelebrator == 4)
+		{
+			players.get(newUsersChoice).celebration4();
+		}
+		else if (newRandomCelebrator == 5)
+		{
+			players.get(newUsersChoice).celebration5();
+		}
+	}
+		
+	// get user input from available list
+	public static void getAvailableListUserInput()
+	{
+		Scanner input = new Scanner(System.in);
+		System.out.print("\nEnter a player number to add or remove, \"A\", \"C\", or \"F\": ");
+		String usersChoice = input.next();
+		if (usersChoice.toUpperCase().equals("A"))
+		{
+			// display the Available Players List
+			printAvailablePlayersList();
+		}
+		else if (usersChoice.toUpperCase().equals("C"))
+		{
+			// display the Chosen Players List
+			printChosenPlayersList();
+		}
+		else if (usersChoice.toUpperCase().equals("F"))
+		{
+			// display the finalized list
+			printFinalPlayersList();
+		}
+		else 
+		{
+			int x = Integer.parseInt(usersChoice);
+			if(players.size() <= 0)
+			{
+				System.out.println("There are no players in this list");
+				printAvailablePlayersList();
+			}
+			else if (x > players.size()-1)
+			{
+				System.out.println("Invalid choice.  Choose again.");
+				printAvailablePlayersList();
+			}
+			else 
+			{	
+				addToChosenList(x);
+				printAvailablePlayersList();
+			}
+		}	
+	}
+	
+	
+	// get user input from available list
+		public static void getChosenListUserInput()
+		{
+			Scanner input = new Scanner(System.in);
+			System.out.print("\nEnter a player number to add or remove, \"A\", \"C\", or \"F\": ");
+			String usersChoice = input.next();
+			if (usersChoice.toUpperCase().equals("A"))
+			{
+				// display the Available Players List
+				printAvailablePlayersList();
+			}
+			else if (usersChoice.toUpperCase().equals("C"))
+			{
+				// display the Chosen Players List
+				printChosenPlayersList();
+			}
+			else if (usersChoice.toUpperCase().equals("F"))
+			{
+				// display the finalized list
+				printFinalPlayersList();
+			}
+			else 
+			{
+				int x = Integer.parseInt(usersChoice);
+				if(chosenPlayers.size() <= 0)
+				{
+					System.out.println("There are no players in this list");
+					printAvailablePlayersList();
+				}
+				else if (x > chosenPlayers.size()-1)
+				{
+					System.out.println("Invalid choice.  Choose again.");
+					printChosenPlayersList();
+				}
+				else 
+				{	
+					removeFromChosenList(x);
+					printAvailablePlayersList();
+				}
+				
+			}	
 		}
 		
-		
-		// print player, position and stats
-		// print offensive players
-		// print defensive players
-		
-		
+	//print list of available players
+	public static void printAvailablePlayersList()
+	{		
+		System.out.println("\nNumber of Available Players: " + players.size());
+		System.out.println("\nLIST OF AVAILABLE PLAYERS: \n");
+		if(players.size() <= 0)
+		{
+			System.out.println("There are no players in this list");
+		}
+		if(players.size() > 0)
+		{
+			System.out.println(players.toString().replace("[", "").replace("]", "").replace(",", "\n"));
+
+		}
+		getAvailableListUserInput();
 	}
-	
-	//constructor automatically creates players list
-	public static void PlayerManager()
-	{
-		CreatePlayer();
+		
+	//print list of chosen players
+	public static void printChosenPlayersList()
+	{	
+		System.out.println("\nLIST OF CHOSEN PLAYERS: \n");
+		if(chosenPlayers.size() <= 0)
+		{
+			System.out.println("There are no players in this list");
+		}
+		if(chosenPlayers.size() > 0)
+		{
+			System.out.println(chosenPlayers.toString().replace("[", "").replace("]", "").replace(",", "\n"));
+
+		}
+		getChosenListUserInput();
 	}
-	
-	// array to hold list of available players
-	//public static List players = new ArrayList();
-	//public static ArrayList players = new ArrayList();
-	public static String[] players = new String[46];
-	
-	// add players to array
-	public static void CreatePlayer()
+		
+	//print final list of drafted players
+	public static void printFinalPlayersList()
 	{
-	//Quarterbacks
-		PlayerManager blakeBortles = new PlayerManager();
+		System.out.println("\nFINAL LIST OF DRAFTED PLAYERS: \n");
+		if(chosenPlayers.size() <= 0)
+		{
+			System.out.println("There are no players in this list");
+		}
+		if(chosenPlayers.size() > 0)
+		{
+			System.out.println(chosenPlayers.toString().replace("[", "").replace("]", "").replace(",", "\n"));
+
+		}
+		
+		// play again or exit game?
+		Scanner input = new Scanner(System.in);
+		System.out.print("\nDo you want to play again? Enter \"Y\" to start or \"N\" to end game:");
+		String start = input.next();
+		System.out.println();
+		if(start.equalsIgnoreCase("Y"))
+		{
+			startGame();
+		}
+		else
+		{
+			System.out.println("Game has ended");
+			System.exit(0);
+		}						
+	}
+
+	
+	// Opening screen to start game
+	public static void startGame()
+	{
+		// Opening Screen to start game
+		players.clear();
+		chosenPlayers.clear();
+		System.out.println("------NFL DRAFT BOARD------");
+		System.out.println("Pick Your Winning Team");
+		
+		Scanner input = new Scanner(System.in);
+		System.out.print("Enter \"Y\" to start:");
+		String start = input.next();
+		System.out.println();
+		if(start.equalsIgnoreCase("Y"))
+		{
+			displayInstructions();
+			CreatePlayers();
+			printAvailablePlayersList();
+		}
+		else
+		{
+			System.out.println("Game has ended");
+			System.exit(0);
+		}
+	}
+			
+	// display instructions 
+	public static void displayInstructions()
+	{
+		System.out.println("INSTRUCTIONS:\nTo add an Available Player to the Chosen List\n" + 
+				"or to remove a player from the Chosen List, enter the player's number.\n" 
+				+ "or enter \"C\" to view the Chosen List.  \nOr enter \"A\" to see the Available List. "
+				+ "\nOr enter \"F\" to finalize the draft list.");
+		System.out.println();
+	}		
+			
+	// Create player objects and attach attributes
+	public static void CreatePlayers()
+	{		
+		//Quarterbacks
+		OffensivePlayer blakeBortles = new OffensivePlayer();
 		blakeBortles.NFLPlayer("Blake Bortles", "QB");
 		blakeBortles.setYards(1050);
 		blakeBortles.setInterceptions(6);
@@ -46,9 +289,10 @@ public class PlayerManager extends NFLPlayer{
 		blakeBortles.setRating(79.4);
 		blakeBortles.setTeam("JAX");
 		blakeBortles.setAverageYardsPerGame(blakeBortles.getYards());
-		players[1] = ("Blake Bortles");
+		players.add(blakeBortles);
+		blakeBortles.setArrayIndex (players.indexOf(blakeBortles));
 		
-		PlayerManager mattRyan = new PlayerManager();
+		OffensivePlayer mattRyan = new OffensivePlayer();
 		mattRyan.NFLPlayer("Matt Ryan", "QB");
 		mattRyan.setYards(1473);
 		mattRyan.setInterceptions(2);
@@ -56,10 +300,10 @@ public class PlayerManager extends NFLPlayer{
 		mattRyan.setRating(126.3);
 		mattRyan.setTeam("ATL");
 		mattRyan.setAverageYardsPerGame(mattRyan.getYards());
-		//players.add("Matt Ryan");
-		players[2] = ("Matt Ryan");
-				
-		PlayerManager samBradford = new PlayerManager();
+		players.add(mattRyan);
+		mattRyan.setArrayIndex (players.indexOf(mattRyan));
+			
+		OffensivePlayer samBradford = new OffensivePlayer();
 		samBradford.NFLPlayer("Sam Bradford", "QB");
 		samBradford.setYards(457);
 		samBradford.setInterceptions(0);
@@ -67,10 +311,11 @@ public class PlayerManager extends NFLPlayer{
 		samBradford.setRating(107.8);
 		samBradford.setTeam("MIN");
 		samBradford.setAverageYardsPerGame(samBradford.getYards());
-		//players.add("Sam Bradford");
-		players[3] = ("Sam Bradford");
+		players.add(samBradford);
+		//samBradford.setListNumber(3);
+		samBradford.setArrayIndex (players.indexOf(samBradford));
 		
-		PlayerManager drewBrees = new PlayerManager();
+		OffensivePlayer drewBrees = new OffensivePlayer();
 		drewBrees.NFLPlayer("Drew Brees", "QB");
 		drewBrees.setYards(1269);
 		drewBrees.setInterceptions(3);
@@ -78,10 +323,10 @@ public class PlayerManager extends NFLPlayer{
 		drewBrees.setRating(98.9);
 		drewBrees.setTeam("NO");
 		drewBrees.setAverageYardsPerGame(drewBrees.getYards());
-		//players.add("Drew Brees");
-		players[4] = ("Drew Brees");
+		players.add(drewBrees);
+		drewBrees.setArrayIndex (players.indexOf(drewBrees));
 		
-		PlayerManager derekCarr = new PlayerManager();
+		OffensivePlayer derekCarr = new OffensivePlayer();
 		derekCarr.NFLPlayer("Derek Carr", "QB");
 		derekCarr.setYards(1066);
 		derekCarr.setInterceptions(1);
@@ -89,413 +334,430 @@ public class PlayerManager extends NFLPlayer{
 		derekCarr.setRating(104.6);
 		derekCarr.setTeam("OAK");
 		derekCarr.setAverageYardsPerGame(derekCarr.getYards());
-		//players.add("Derek Carr");
-		players[5] = ("Derek Carr");
+		players.add(derekCarr);
+		derekCarr.setArrayIndex (players.indexOf(derekCarr));
 		
-		
-	// Running Backs
-		PlayerManager ameerAbdullah = new PlayerManager();
+		// running backs
+		OffensivePlayer ameerAbdullah = new OffensivePlayer();
 		ameerAbdullah.NFLPlayer("Ameer Abdullah", "RB");
 		ameerAbdullah.setCareerValue(18);
 		ameerAbdullah.setYards(101);
 		ameerAbdullah.setAverageYardsPerCar(ameerAbdullah.getYards(), ameerAbdullah.getCareerValue());
 		ameerAbdullah.setTouchdowns(0);
 		ameerAbdullah.setTeam("DET");
-		//players.add("Ameer Abdullah");
-		players[6] = "Ameer Abdullah";
-				
-		PlayerManager jayAjayi = new PlayerManager();
+		players.add(ameerAbdullah);
+		ameerAbdullah.setArrayIndex (players.indexOf(ameerAbdullah));
+					
+		OffensivePlayer jayAjayi = new OffensivePlayer();
 		jayAjayi.NFLPlayer("Jay Ajayi", "RB");
 		jayAjayi.setCareerValue(18);
 		jayAjayi.setYards(75);
 		jayAjayi.setAverageYardsPerCar(jayAjayi.getYards(), jayAjayi.getCareerValue());
 		jayAjayi.setTouchdowns(1);
 		jayAjayi.setTeam("MIA");
-		//players.add("Jay Ajayi");
-		players[7] = ("Jay Ajayi");
-		
-		PlayerManager javoriusAllen = new PlayerManager();
+		players.add(jayAjayi);
+		jayAjayi.setArrayIndex (players.indexOf(jayAjayi));
+			
+		OffensivePlayer javoriusAllen = new OffensivePlayer();
 		javoriusAllen.NFLPlayer("Javorius Allen", "RB");
 		javoriusAllen.setCareerValue(3);
 		javoriusAllen.setYards(13);
 		javoriusAllen.setAverageYardsPerCar(javoriusAllen.getYards(), javoriusAllen.getCareerValue());
 		javoriusAllen.setTouchdowns(0);
 		javoriusAllen.setTeam("BAL");
-		//players.add("Javorius Allen");
-		players[8] = ("Javorius Allen");
+		players.add(javoriusAllen);
+		javoriusAllen.setArrayIndex (players.indexOf(javoriusAllen));
 		
-		PlayerManager cameronArtisPayne = new PlayerManager();
+		OffensivePlayer cameronArtisPayne = new OffensivePlayer();
 		cameronArtisPayne.NFLPlayer("Cameron Artis-Payne", "RB");
 		cameronArtisPayne.setCareerValue(18);
 		cameronArtisPayne.setYards(59);
 		cameronArtisPayne.setAverageYardsPerCar(cameronArtisPayne.getYards(), cameronArtisPayne.getCareerValue());
 		cameronArtisPayne.setTouchdowns(0);
 		cameronArtisPayne.setTeam("CAR");
-		//players.add("Cameron Artis-Payne");
-		players[9] = ("Cameron Artis-Payne");
-		
-		
-		PlayerManager mattAsiata = new PlayerManager();
+		players.add(cameronArtisPayne);
+		cameronArtisPayne.setArrayIndex (players.indexOf(cameronArtisPayne));
+			
+		OffensivePlayer mattAsiata = new OffensivePlayer();
 		mattAsiata.NFLPlayer("Matt Asiata", "RB");
 		mattAsiata.setCareerValue(16);
 		mattAsiata.setYards(42);
 		mattAsiata.setAverageYardsPerCar(mattAsiata.getYards(), mattAsiata.getCareerValue());
 		mattAsiata.setTouchdowns(0);
 		mattAsiata.setTeam("MIN");
-		//players.add("Matt Asiata");
-		players[10] = ("Matt Asiata");
+		players.add(mattAsiata);
+		mattAsiata.setArrayIndex (players.indexOf(mattAsiata));
 		
-	// tight Ends
-		PlayerManager garyBarnidge = new PlayerManager();
+		// tight Ends
+		OffensivePlayer garyBarnidge = new OffensivePlayer();
 		garyBarnidge.NFLPlayer("Gary Barnidge", "TE");
 		garyBarnidge.setReceptions(16);
 		garyBarnidge.setYards(160);
 		garyBarnidge.setAverageYardsPerReception(garyBarnidge.getYards(), garyBarnidge.getReceptions());
 		garyBarnidge.setTouchdowns(0);
 		garyBarnidge.setTeam("CLE");
-		//players.add("Gary Barnidge");
-		players[11] = ("Gary Barnidge");
+		players.add(garyBarnidge);
+		garyBarnidge.setArrayIndex (players.indexOf(garyBarnidge));
 		
-		PlayerManager blakeBell = new PlayerManager();
+		OffensivePlayer blakeBell = new OffensivePlayer();
 		blakeBell.NFLPlayer("Blake Bell", "TE");
 		blakeBell.setReceptions(1);
 		blakeBell.setYards(6);
 		blakeBell.setAverageYardsPerReception(blakeBell.getYards(), blakeBell.getReceptions());
 		blakeBell.setTouchdowns(0);
 		blakeBell.setTeam("SF");
-		//players.add("Blake Bell");
-		players[12] = ("Blake Bell");
+		players.add(blakeBell);
+		blakeBell.setArrayIndex (players.indexOf(blakeBell));
 		
-		PlayerManager martellusBennett = new PlayerManager();
+		OffensivePlayer martellusBennett = new OffensivePlayer();
 		martellusBennett.NFLPlayer("Martellus Bennett", "TE");
 		martellusBennett.setReceptions(15);
 		martellusBennett.setYards(247);
 		martellusBennett.setAverageYardsPerReception(martellusBennett.getYards(), martellusBennett.getReceptions());
 		martellusBennett.setTouchdowns(1);
 		martellusBennett.setTeam("NE");
-		//players.add("Martellus Bennett");
-		players[13] = ("Martellus Bennett");
+		players.add(martellusBennett);
+		martellusBennett.setArrayIndex (players.indexOf(martellusBennett));
 		
-		PlayerManager brentCelek = new PlayerManager();
+		OffensivePlayer brentCelek = new OffensivePlayer();
 		brentCelek.NFLPlayer("Brent Celek", "TE");
 		brentCelek.setReceptions(4);
 		brentCelek.setYards(72);
 		brentCelek.setAverageYardsPerReception(brentCelek.getYards(), brentCelek.getReceptions());
 		brentCelek.setTouchdowns(0);
 		brentCelek.setTeam("PHI");
-		//players.add("Brent Celek");
-		players[14] = ("Brent Celek");
+		players.add(brentCelek);
+		brentCelek.setArrayIndex (players.indexOf(brentCelek));
 		
-		PlayerManager garrettCelek = new PlayerManager();
+		OffensivePlayer garrettCelek = new OffensivePlayer();
 		garrettCelek.NFLPlayer("Garrett Celek", "TE");
 		garrettCelek.setReceptions(10);
 		garrettCelek.setYards(131);
 		garrettCelek.setAverageYardsPerReception(garrettCelek.getYards(), garrettCelek.getReceptions());
 		garrettCelek.setTouchdowns(0);
 		garrettCelek.setTeam("SF");
-		//players.add("Garrett Celek");
-		players[15] = ("Garrett Celek");
+		players.add(garrettCelek);
+		garrettCelek.setArrayIndex (players.indexOf(garrettCelek));
 		
-	// wide receivers
-		PlayerManager dougBaldwin = new PlayerManager();
+		// wide receivers
+		OffensivePlayer dougBaldwin = new OffensivePlayer();
 		dougBaldwin.NFLPlayer("Doug Baldwin", "WR");
 		dougBaldwin.setReceptions(24);
 		dougBaldwin.setYards(330);
 		dougBaldwin.setAverageYardsPerReception(dougBaldwin.getYards(), dougBaldwin.getReceptions());
 		dougBaldwin.setTouchdowns(2);
 		dougBaldwin.setTeam("SEA");
-		//players.add("Doug Baldwin");
-		players[16] = ("Doug Baldwin");
+		players.add(dougBaldwin);
+		dougBaldwin.setArrayIndex (players.indexOf(dougBaldwin));
 		
-		PlayerManager coleBeasley = new PlayerManager();
+		OffensivePlayer coleBeasley = new OffensivePlayer();
 		coleBeasley.NFLPlayer("Cole Beasley", "WR");
 		coleBeasley.setReceptions(23);
 		coleBeasley.setYards(279);
 		coleBeasley.setAverageYardsPerReception(coleBeasley.getYards(), coleBeasley.getReceptions());
 		coleBeasley.setTouchdowns(0);
 		coleBeasley.setTeam("DAL");
-		//players.add("Cole Beasley");
-		players[17] = ("Cole Beasley");
+		players.add(coleBeasley);
+		coleBeasley.setArrayIndex (players.indexOf(coleBeasley));
 		
-		PlayerManager odellBeckham = new PlayerManager();
+		OffensivePlayer odellBeckham = new OffensivePlayer();
 		odellBeckham.NFLPlayer("Odell Beckham", "WR");
 		odellBeckham.setReceptions(19);
 		odellBeckham.setYards(280);
 		odellBeckham.setAverageYardsPerReception(odellBeckham.getYards(), odellBeckham.getReceptions());
 		odellBeckham.setTouchdowns(0);
 		odellBeckham.setTeam("NYG");
-		//players.add("Odell Beckham");
-		players[18] = ("Odell Beckham");
+		players.add(odellBeckham);
+		odellBeckham.setArrayIndex (players.indexOf(odellBeckham));
 		
-		PlayerManager kelvinBenjamin = new PlayerManager();
+		OffensivePlayer kelvinBenjamin = new OffensivePlayer();
 		kelvinBenjamin.NFLPlayer("Kelvin Benjamin", "WR");
 		kelvinBenjamin.setReceptions(16);
 		kelvinBenjamin.setYards(238);
 		kelvinBenjamin.setAverageYardsPerReception(kelvinBenjamin.getYards(), kelvinBenjamin.getReceptions());
 		kelvinBenjamin.setTouchdowns(4);
 		kelvinBenjamin.setTeam("CAR");
-		//players.add("Kelvin Benjamin");
-		players[19] = ("Kelvin Benjamin");
+		players.add(kelvinBenjamin);
+		kelvinBenjamin.setArrayIndex (players.indexOf(kelvinBenjamin));
 		
-		PlayerManager travisBenjamin = new PlayerManager();
+		OffensivePlayer travisBenjamin = new OffensivePlayer();
 		travisBenjamin.NFLPlayer("Travis Benjamin", "WR");
 		travisBenjamin.setReceptions(21);
 		travisBenjamin.setYards(277);
 		travisBenjamin.setAverageYardsPerReception(travisBenjamin.getYards(), travisBenjamin.getReceptions());
 		travisBenjamin.setTouchdowns(2);
 		travisBenjamin.setTeam("SD");
-		//players.add("Travis Benjamin");
-		players[20] = ("Travis Benjamin");
+		players.add(travisBenjamin);
+		travisBenjamin.setArrayIndex (players.indexOf(travisBenjamin));
 		
 		
-	// 	Offensive linebacker	
-		PlayerManager brandenAlbert = new PlayerManager();
+		// 	Offensive linebacker	
+		OffensivePlayer brandenAlbert = new OffensivePlayer();
 		brandenAlbert.NFLPlayer("Branden Albert", "OL");
 		brandenAlbert.setGamesPlayed(3);
 		brandenAlbert.setGamesStarted(3);
 		brandenAlbert.setTeam("MIA");
-		//players.add("Branden Albert");
-		players[21] = ("Branden Albert");
+		players.add(brandenAlbert);
+		brandenAlbert.setArrayIndex (players.indexOf(brandenAlbert));
 		
-		PlayerManager vadalAlexander = new PlayerManager();
+		OffensivePlayer vadalAlexander = new OffensivePlayer();
 		vadalAlexander.NFLPlayer("Vadal Alexander", "OL");
 		vadalAlexander.setGamesPlayed(3);
 		vadalAlexander.setGamesStarted(1);
 		vadalAlexander.setTeam("OAK");
-		//players.add("Vadal Alexander");
-		players[22] = ("Vadal Alexander");
+		players.add(vadalAlexander);
+		vadalAlexander.setArrayIndex (players.indexOf(vadalAlexander));
 		
-		PlayerManager allenBarbre = new PlayerManager();
+		OffensivePlayer allenBarbre = new OffensivePlayer();
 		allenBarbre.NFLPlayer("Allen Barbre", "OL");
 		allenBarbre.setGamesPlayed(3);
 		allenBarbre.setGamesStarted(3);
 		allenBarbre.setTeam("PHI");
-		//players.add("Allen Barbre");
-		players[23] = ("Allen Barbre");
+		players.add(allenBarbre);
+		allenBarbre.setArrayIndex (players.indexOf(allenBarbre));
 		
-		PlayerManager donBarclay = new PlayerManager();
+		OffensivePlayer donBarclay = new OffensivePlayer();
 		donBarclay.NFLPlayer("Don Barclay", "OL");
 		donBarclay.setGamesPlayed(3);
 		donBarclay.setGamesStarted(0);
 		donBarclay.setTeam("GB");
-		//players.add("Don Barclay");
-		players[24] = ("Don Barclay");
+		players.add(donBarclay);
+		donBarclay.setArrayIndex (players.indexOf(donBarclay));
 		
-		PlayerManager timBarnes = new PlayerManager();
+		OffensivePlayer timBarnes = new OffensivePlayer();
 		timBarnes.NFLPlayer("Tim Barnes", "OL");
 		timBarnes.setGamesPlayed(4);
 		timBarnes.setGamesStarted(4);
 		timBarnes.setTeam("LA");
-		//players.add("Tim Barnes");
-		players[25] = ("Tim Barnes");
+		players.add(timBarnes);
+		timBarnes.setArrayIndex (players.indexOf(timBarnes));
 		
 		
-	// defensive linebackers
-		PlayerManager genoAtkins = new PlayerManager();
+		// defensive linebackers
+		DefensivePlayer genoAtkins = new DefensivePlayer();
 		genoAtkins.NFLPlayer("Geno Atkins", "DL");
 		genoAtkins.setTackles(11);
 		genoAtkins.setSacks(2.5);
 		genoAtkins.setForcedFumbles(0);
 		genoAtkins.setTeam("CIN");
-		//players.add("Geno Atkins");
-		players[26] = ("Geno Atkins");
+		players.add(genoAtkins);
+		genoAtkins.setArrayIndex (players.indexOf(genoAtkins));
 				
-		PlayerManager denicoAutry = new PlayerManager();
+		DefensivePlayer denicoAutry = new DefensivePlayer();
 		denicoAutry.NFLPlayer("Denico Autry", "DL");
 		denicoAutry.setTackles(5);
 		denicoAutry.setSacks(1.0);
 		denicoAutry.setForcedFumbles(0);
 		denicoAutry.setTeam("OAK");
-		//players.add("Denico Autry");
-		players[27] = ("Denico Autry");
+		players.add(denicoAutry);
+		denicoAutry.setArrayIndex (players.indexOf(denicoAutry));
 		
-		PlayerManager cliffAvril = new PlayerManager();
+		DefensivePlayer cliffAvril = new DefensivePlayer();
 		cliffAvril.NFLPlayer("Cliff Avril", "DL");
 		cliffAvril.setTackles(10);
 		cliffAvril.setSacks(2.0);
 		cliffAvril.setForcedFumbles(1);
 		cliffAvril.setTeam("SEA");
-		//players.add("Cliff Avril");
-		players[28] = ("Cliff Avril");
+		players.add(cliffAvril);
+		cliffAvril.setArrayIndex (players.indexOf(cliffAvril));
 		
-		PlayerManager robertAyers = new PlayerManager();
+		DefensivePlayer robertAyers = new DefensivePlayer();
 		robertAyers.NFLPlayer("Robert Ayers", "DL");
 		robertAyers.setTackles(4);
 		robertAyers.setSacks(1.0);
 		robertAyers.setForcedFumbles(0);
 		robertAyers.setTeam("TB");
-		//players.add("Robert Ayers");
-		players[29] = ("Robert Ayers");
+		players.add(robertAyers);
+		robertAyers.setArrayIndex (players.indexOf(robertAyers));
 		
-		PlayerManager jonathanBabineaux = new PlayerManager();
+		DefensivePlayer jonathanBabineaux = new DefensivePlayer();
 		jonathanBabineaux.NFLPlayer("Jonathan Babineaux", "DL");
 		jonathanBabineaux.setTackles(5);
 		jonathanBabineaux.setSacks(0.0);
 		jonathanBabineaux.setForcedFumbles(0);
 		jonathanBabineaux.setTeam("ATL");
-		//players.add("Jonathan Babineaux");
-		players[30] = ("Jonathan Babineaux");
+		players.add(jonathanBabineaux);
+		jonathanBabineaux.setArrayIndex (players.indexOf(jonathanBabineaux));
 	
-	// Linebackers	
-		PlayerManager djAlexander = new PlayerManager();
+		// Linebackers	
+		DefensivePlayer djAlexander = new DefensivePlayer();
 		djAlexander.NFLPlayer("D.J. Alexander", "LB");
 		djAlexander.setTackles(2);
 		djAlexander.setSacks(0.0);
 		djAlexander.setForcedFumbles(0);
 		djAlexander.setTeam("KC");
-		//players.add("D.J. Alexander");
-		players[31] = ("D.J. Alexander");
+		players.add(djAlexander);
+		djAlexander.setArrayIndex (players.indexOf(djAlexander));
 		
-		PlayerManager lorenzoAlexander = new PlayerManager();
+		DefensivePlayer lorenzoAlexander = new DefensivePlayer();
 		lorenzoAlexander.NFLPlayer("Lorenzo Alexander", "LB");
 		lorenzoAlexander.setTackles(21);
 		lorenzoAlexander.setSacks(4.0);
 		lorenzoAlexander.setForcedFumbles(2);
 		lorenzoAlexander.setTeam("BUF");
-		//players.add("Lorenzo Alexander");
-		players[32] = ("Lorenzo Alexander");
+		players.add(lorenzoAlexander);
+		lorenzoAlexander.setArrayIndex (players.indexOf(lorenzoAlexander));
 		
-		PlayerManager kwonAlexander = new PlayerManager();
+		DefensivePlayer kwonAlexander = new DefensivePlayer();
 		kwonAlexander.NFLPlayer("Kwon Alexander", "LB");
 		kwonAlexander.setTackles(38);
 		kwonAlexander.setSacks(2.0);
 		kwonAlexander.setForcedFumbles(0);
 		kwonAlexander.setInterceptions(1);
 		kwonAlexander.setTeam("TB");
-		//players.add("Kwon Alexander");
-		players[33] = ("Kwon Alexander");
+		players.add(kwonAlexander);
+		kwonAlexander.setArrayIndex (players.indexOf(kwonAlexander));
 		
-		PlayerManager kikoAlonso = new PlayerManager();
+		DefensivePlayer kikoAlonso = new DefensivePlayer();
 		kikoAlonso.NFLPlayer("Kiko Alonso", "LB");
 		kikoAlonso.setTackles(38);
 		kikoAlonso.setSacks(0.0);
 		kikoAlonso.setForcedFumbles(0);
 		kikoAlonso.setTeam("MIA");
-		//players.add("Kiko Alonso");
-		players[34] = ("Kiko Alonso");
+		players.add(kikoAlonso);
+		kikoAlonso.setArrayIndex (players.indexOf(kikoAlonso));
 		
-		PlayerManager jonathanAnderson = new PlayerManager();
+		DefensivePlayer jonathanAnderson = new DefensivePlayer();
 		jonathanAnderson.NFLPlayer("Jonathan Anderson", "LB");
 		jonathanAnderson.setTackles(4);
 		jonathanAnderson.setSacks(0.0);
 		jonathanAnderson.setForcedFumbles(0);
 		jonathanAnderson.setTeam("CHI");
-		//players.add("Jonathan Anderson");
-		players[35] = ("Jonathan Anderson");
+		players.add(jonathanAnderson);
+		jonathanAnderson.setArrayIndex (players.indexOf(jonathanAnderson));
 		
-		
-	// Defensive backers
-		PlayerManager beneBenwikere = new PlayerManager();
+		// Defensive backers
+		DefensivePlayer beneBenwikere = new DefensivePlayer();
 		beneBenwikere.NFLPlayer("Bene' Benwikere", "DB");
 		beneBenwikere.setTackles(10);
 		beneBenwikere.setSacks(0.0);
 		beneBenwikere.setForcedFumbles(0);
 		beneBenwikere.setInterceptions(1);
 		beneBenwikere.setTeam("CAR");
-		//players.add("Bene' Benwikere");
-		players[36] = ("Bene' Benwikere"); 
+		players.add(beneBenwikere);
+		beneBenwikere.setArrayIndex (players.indexOf(beneBenwikere));
 				
-		PlayerManager natBerhe = new PlayerManager();
+		DefensivePlayer natBerhe = new DefensivePlayer();
 		natBerhe.NFLPlayer("Nat Berhe", "DB");
 		natBerhe.setTackles(14);
 		natBerhe.setSacks(0.0);
 		natBerhe.setForcedFumbles(1);
 		natBerhe.setTeam("NYG");
-		//players.add("Nat Berhe");
-		players[37] = ("Nat Berhe");
+		players.add(natBerhe);
+		natBerhe.setArrayIndex (players.indexOf(natBerhe));
 		
-		PlayerManager ericBerry = new PlayerManager();
+		DefensivePlayer ericBerry = new DefensivePlayer();
 		ericBerry.NFLPlayer("Eric Berry", "DB");
 		ericBerry.setTackles(17);
 		ericBerry.setSacks(0.0);
 		ericBerry.setForcedFumbles(0);
 		ericBerry.setInterceptions(1);
 		ericBerry.setTeam("KC");
-		//players.add("Eric Berry");
-		players[38] = ("Eric Berry");
+		players.add(ericBerry);
+		ericBerry.setArrayIndex (players.indexOf(ericBerry));
 		
-		PlayerManager antoineBethea = new PlayerManager();
+		DefensivePlayer antoineBethea = new DefensivePlayer();
 		antoineBethea.NFLPlayer("Antoine Bethea", "DB");
 		antoineBethea.setTackles(28);
 		antoineBethea.setSacks(0.0);
 		antoineBethea.setForcedFumbles(1);
 		antoineBethea.setInterceptions(1);
 		antoineBethea.setTeam("SF");
-		//players.add("Antoine Bethea");
-		players[39] = ("Antoine Bethea");
+		players.add(antoineBethea);
+		antoineBethea.setArrayIndex (players.indexOf(antoineBethea));
 		
-		PlayerManager justinBethel = new PlayerManager();
+		DefensivePlayer justinBethel = new DefensivePlayer();
 		justinBethel.NFLPlayer("Justin Bethel", "DB");
 		justinBethel.setTackles(4);
 		justinBethel.setSacks(0.0);
 		justinBethel.setForcedFumbles(0);
 		justinBethel.setTeam("ARI");
-		//players.add("Justin Bethel");
-		players[40] = ("Justin Bethel");
+		players.add(justinBethel);
+		justinBethel.setArrayIndex (players.indexOf(justinBethel));
 		
 	// Kickers	
-		PlayerManager joshBrown = new PlayerManager();
+		OffensivePlayer joshBrown = new OffensivePlayer();
 		joshBrown.NFLPlayer("Josh Brown", "K");
 		joshBrown.setFieldGoalsAttempted(6);
 		joshBrown.setFieldGoalsMade(5);
 		joshBrown.setPercentOfGoalsMade(joshBrown.getFieldGoalsMade(), joshBrown.getFieldGoalsAttempted());
 		joshBrown.setLongGain(48);
-		justinBethel.setTeam("NYG");
-		//players.add("Josh Brown");
-		players[41] = ("Josh Brown");
+		joshBrown.setTeam("NYG");
+		players.add(joshBrown);
+		joshBrown.setArrayIndex (players.indexOf(joshBrown));
 	
-		PlayerManager dustinHopkins = new PlayerManager();
+		OffensivePlayer dustinHopkins = new OffensivePlayer();
 		dustinHopkins.NFLPlayer("Dustin Hopkins", "K");
 		dustinHopkins.setFieldGoalsAttempted(12);
 		dustinHopkins.setFieldGoalsMade(12);
 		dustinHopkins.setPercentOfGoalsMade(dustinHopkins.getFieldGoalsMade(), dustinHopkins.getFieldGoalsAttempted());
 		dustinHopkins.setLongGain(49);
 		dustinHopkins.setTeam("WAS");
-		//players.add("Dustin Hopkins");
-		players[42] = ("Dustin Hopkins");
+		players.add(dustinHopkins);
+		dustinHopkins.setArrayIndex (players.indexOf(dustinHopkins));
 		
-		PlayerManager mikeNugent = new PlayerManager();
+		OffensivePlayer mikeNugent = new OffensivePlayer();
 		mikeNugent.NFLPlayer("Mike Nugent", "K");
 		mikeNugent.setFieldGoalsAttempted(13);
 		mikeNugent.setFieldGoalsMade(12);
 		mikeNugent.setPercentOfGoalsMade(mikeNugent.getFieldGoalsMade(), mikeNugent.getFieldGoalsAttempted());
 		mikeNugent.setLongGain(47);
 		mikeNugent.setTeam("CIN");
-		//players.add("Mike Nugent");
-		players[43] = ("Mike Nugent");
+		players.add(mikeNugent);
+		mikeNugent.setArrayIndex (players.indexOf(mikeNugent));
 		
-		PlayerManager danCarpenter = new PlayerManager();
+		OffensivePlayer danCarpenter = new OffensivePlayer();
 		danCarpenter.NFLPlayer("Dan Carpenter", "K");
 		danCarpenter.setFieldGoalsAttempted(8);
 		danCarpenter.setFieldGoalsMade(6);
 		danCarpenter.setPercentOfGoalsMade(danCarpenter.getFieldGoalsMade(), danCarpenter.getFieldGoalsAttempted());
 		danCarpenter.setLongGain(45);
 		danCarpenter.setTeam("BUF");
-		//players.add("Dan Carpenter");
-		players[44] = ("Dan Carpenter");
+		players.add(danCarpenter);
+		danCarpenter.setArrayIndex (players.indexOf(danCarpenter));
 		
-		PlayerManager chandlerCatanzaro = new PlayerManager();
+		OffensivePlayer chandlerCatanzaro = new OffensivePlayer();
 		chandlerCatanzaro.NFLPlayer("Chandler Catanzaro", "K");
 		chandlerCatanzaro.setFieldGoalsAttempted(6);
 		chandlerCatanzaro.setFieldGoalsMade(5);
 		chandlerCatanzaro.setPercentOfGoalsMade(chandlerCatanzaro.getFieldGoalsMade(), chandlerCatanzaro.getFieldGoalsAttempted());
 		chandlerCatanzaro.setLongGain(60);
 		chandlerCatanzaro.setTeam("ARI");
-		//players.add("Chandler Catanzaro");
-		players[45] = ("Chandler Catanzaro");
+		players.add(chandlerCatanzaro);
+		chandlerCatanzaro.setArrayIndex (players.indexOf(chandlerCatanzaro));
+	}	
 	
-	}
 	
-	//@Override
-	public String toString()
+	// implement celebrator
+	@Override
+	public void celebrate()
 	{
-		return "Player: " + getName() + "\tPosition: " + getPosition();
+		System.out.println(name + " does cartwheels to celebrate his draft.");
 	}
-	
-	public static chandlerCatanzaro getChandlerCatanzaro()
+	@Override
+	public void celebration1()
 	{
-		return (chandlerCatanzaro);
+		System.out.println(name + " shouts to celebrate his draft.");
 	}
-	
-	
+	@Override
+	public void celebration2()
+	{
+		System.out.println(name + " points upward to celebrate his draft.");
+	}
+	@Override
+	public void celebration3()
+	{
+		System.out.println(name + " smiles to celebrate his draft.");
+	}
+	@Override
+	public void celebration4()
+	{
+		System.out.println(name + " laughs to celebrate his draft.");
+	}
+	@Override
+	public void celebration5()
+	{
+		System.out.println(name + " hugs his mom to celebrate his draft.");	
+	}
+			
 }

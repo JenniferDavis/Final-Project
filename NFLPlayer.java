@@ -1,7 +1,7 @@
-/*
+/* FINAL PROJECT
  * Author: Jennifer Davis
- * CST-100 Assignment Topic 4
- * Last Edited: October 4, 2016
+ * CST-100 Final Project
+ * Last Edited: October 13, 2016
  * 
  * This program allows a coach to draft available players for an NFL team.
  * Players include position and stats.
@@ -12,31 +12,32 @@
 public abstract class NFLPlayer implements Celebrator
 {
  	// variables
- 	private static String name;
- 	private static String position;
+ 	public String name;
+ 	public String position;
 
  	// stat variables
- 	public static int touchdowns = 0;
- 	public static int interceptions = 0;
- 	public static double yards = 0.0;
- 	public static double rating = 0.0;
- 	public static double careerValue = 0;
- 	public static int receptions = 0;
- 	public static int gamesPlayed = 0;
- 	public static int gamesStarted = 0;
- 	public static int tackles = 0;
-	public static double sacks = 0;
- 	public static int forcedFumbles = 0;
- 	public static double fieldGoalsAttempted = 0;
- 	public static double fieldGoalsMade = 0;
- 	public static double longGain = 0;
- 	public static double averageYardsPerCar;
- 	public static double averageYardsPerReception;
- 	public static double percentOfGoalsMade;
- 	public static String team;
- 	public static double averageYardsPerGame;
+ 	public int touchdowns;
+ 	public int interceptions;
+ 	public double yards;
+ 	public double rating;
+ 	public double careerValue;
+ 	public int receptions;
+ 	public int gamesPlayed;
+ 	public int gamesStarted;
+ 	public int tackles;
+	public double sacks;
+ 	public int forcedFumbles;
+ 	public double fieldGoalsAttempted;
+ 	public double fieldGoalsMade;
+ 	public double longGain;
+ 	public double averageYardsPerCar;
+ 	public double averageYardsPerReception;
+ 	public double percentOfGoalsMade;
+ 	public String team;
+ 	public double averageYardsPerGame;
+ 	public int arrayIndex;
  	
- 	//implement celebrator
+ 	//default celebrators
  	public void Celebrate()
 	{
  		System.out.println(name + " says thank you to celebrate his draft.");
@@ -61,233 +62,242 @@ public abstract class NFLPlayer implements Celebrator
 	{
 		System.out.println(name + " nods his head to celebrate his draft.");	
 	}
- 	
+ 
  	// constructors
  	public NFLPlayer()
  	{	}
  
- 	public static void NFLPlayer(String newName, String newPosition)
+ 	public void NFLPlayer(String newName, String newPosition)
  	{
- 		newName = name;
- 		newPosition = position;
+ 		name = newName;
+ 		position = newPosition;
  	}
  
  	// getters
- 	public static String getName()
+ 	
+ 	public int getArrayIndex()
+ 	{
+ 		return arrayIndex;
+ 	}
+ 	public void setArrayIndex(int newArrayIndex)
+ 	{
+ 		arrayIndex = newArrayIndex;
+ 	}
+ 	public String getName()
  	{
  		return name;
  	}
  
- 	public static String getPosition()
+ 	public String getPosition()
  	{
  		return position;
  	}
  	
- 	public static int getTouchdowns()
+ 	public int getTouchdowns()
  	{
  		return touchdowns;
  	}
  	
- 	public static int getInterceptions()
+ 	public int getInterceptions()
  	{
  		return interceptions;
  	}
  	
- 	public static double getYards()
+ 	public double getYards()
  	{
  		return yards;
  	}
  	
- 	public static double getRating()
+ 	public double getRating()
  	{
  		return rating;
  	}
  	
- 	public static double getCareerValue()
+ 	public double getCareerValue()
  	{
  		return careerValue;
  	}
  	
- 	public static double getAverageYardsPerCar()
+ 	public double getAverageYardsPerCar()
  	{
- 		return (yards / careerValue);
+ 		return averageYardsPerCar;
  	}
  	
- 	public static int getReceptions()
+ 	public int getReceptions()
  	{
  		return receptions;
  	}
  	
- 	public static double getAverageYardsPerReception()
+ 	public double getAverageYardsPerReception()
  	{
- 		return (yards / receptions);
+ 		return averageYardsPerReception;
  	}
  	
- 	public static int getGamesPlayed()
+ 	public int getGamesPlayed()
  	{
  		return gamesPlayed;
  	}
  	
- 	public static int getGamesStarted()
+ 	public int getGamesStarted()
  	{
  		return gamesStarted;
  	}
  	
- 	public static int getTackles()
+ 	public int getTackles()
  	{
  		return tackles;
  	}
 	
- 	public static double getSacks()
+ 	public double getSacks()
 	{
 		return sacks;
 	}
  	
- 	public static int getForcedFumbles()
+ 	public int getForcedFumbles()
  	{
  		return forcedFumbles;
  	}
  	
- 	public static double getFieldGoalsAttempted()
+ 	public double getFieldGoalsAttempted()
  	{
  		return fieldGoalsAttempted;
  	}
  	
- 	public static double getFieldGoalsMade()
+ 	public double getFieldGoalsMade()
  	{
  		return fieldGoalsMade;
  	}
  	
- 	public static double getPercentOfGoalsMade()
+ 	public double getPercentOfGoalsMade()
  	{
- 		return (percentOfGoalsMade * 100);
+ 		return percentOfGoalsMade;
  	}
  	
- 	public static double getLongGain()
+ 	public double getLongGain()
  	{
  		return longGain;
  	}
  	
- 	public static String getTeam()
+ 	public String getTeam()
  	{
  		return team;
  	}
  	
- 	public static double getAverageYardsPerGame()
+ 	public double getAverageYardsPerGame()
  	{
  		return averageYardsPerGame;
  	}
  	
  	// setters
- 	public static void setName(String newName)
+ 	public void setName(String newName)
  	{
- 		newName = name;
+ 		name = newName;
  	}
  
- 	public static void setPosition(String newPosition)
+ 	public void setPosition(String newPosition)
  	{
- 		newPosition = position;
+ 		position = newPosition;
  	}
  	
- 	public static void setTouchdowns(int newTouchdowns)
+ 	public void setTouchdowns(int newTouchdowns)
  	{
- 		newTouchdowns = touchdowns;
+ 		touchdowns = newTouchdowns;
  	}
  	
- 	public static void setInterceptions(int newInterceptions)
+ 	public void setInterceptions(int newInterceptions)
  	{
- 		newInterceptions = interceptions;
+ 		interceptions = newInterceptions;
  	}
  	
- 	public static void setYards(double newYards)
+ 	public void setYards(double newYards)
  	{
- 		newYards = yards;
+ 		yards = newYards;
  	}
  	
- 	public static void setRating(double newRating)
+ 	public void setRating(double newRating)
  	{
- 		newRating = rating;
+ 		rating = newRating;
  	}
  	
- 	public static void setCareerValue(double newCareerValue)
+ 	public void setCareerValue(double newCareerValue)
  	{
- 		newCareerValue = careerValue;
+ 		careerValue = newCareerValue;
  	}
  	
- 	public static void setAverageYardsPerCar(double newYards, double newCar)
+ 	public void setAverageYardsPerCar(double newYards, double newCar)
  	{
- 		averageYardsPerCar =  (newYards / newCar);
+ 		averageYardsPerCar =  Math.round(newYards / newCar);
  	}
  	
- 	public static void setReceptions(int newReceptions)
+ 	public void setReceptions(int newReceptions)
  	{
- 		newReceptions = receptions;
+ 		receptions = newReceptions;
  	}
  	
- 	public static void setAverageYardsPerGame(double newYards)
+ 	public void setAverageYardsPerGame(double newYards)
  	{
- 		averageYardsPerGame = (newYards / 4);
+ 		averageYardsPerGame = Math.round(newYards / 4);
  	}
  	
- 	public static void setAverageYardsPerReception(double newYards, int newReceptions)
+ 	public void setAverageYardsPerReception(double newYards, int newReceptions)
  	{
- 		averageYardsPerReception = (newYards / newReceptions);
+ 		averageYardsPerReception = Math.round(newYards / newReceptions);
  	}
  	
- 	public static void setGamesPlayed(int newGamesPlayed)
+ 	public void setGamesPlayed(int newGamesPlayed)
  	{
- 		newGamesPlayed = gamesPlayed;
+ 		gamesPlayed = newGamesPlayed;
  	}
  	
- 	public static void setGamesStarted(int newGamesStarted)
+ 	public void setGamesStarted(int newGamesStarted)
  	{
- 		newGamesStarted = gamesStarted;
+ 		gamesStarted = newGamesStarted;
  	}
  	
- 	public static void setTackles(int newTackles)
+ 	public void setTackles(int newTackles)
  	{
- 		newTackles = tackles;
+ 		tackles = newTackles;
  	}
 	
- 	public static void setSacks(double newSacks)
+ 	public void setSacks(double newSacks)
 	{
-		newSacks = sacks;
+		sacks = newSacks;
 	}
  	
- 	public static void setForcedFumbles(int newForcedFumbles)
+ 	public void setForcedFumbles(int newForcedFumbles)
  	{
- 		newForcedFumbles = forcedFumbles;
+ 		forcedFumbles = newForcedFumbles;
  	}
  	
- 	public static void setFieldGoalsAttempted(double newFieldGoalsAttempted)
+ 	public void setFieldGoalsAttempted(double newFieldGoalsAttempted)
  	{
- 		newFieldGoalsAttempted = fieldGoalsAttempted;
+ 		fieldGoalsAttempted = newFieldGoalsAttempted;
  	}
  	
- 	public static void setFieldGoalsMade(double newFieldGoalsMade)
+ 	public void setFieldGoalsMade(double newFieldGoalsMade)
  	{
- 		newFieldGoalsMade = fieldGoalsMade;
+ 		fieldGoalsMade = newFieldGoalsMade;
  	}
  	
- 	public static void setPercentOfGoalsMade(double newFieldGoalsMade, double newFieldGoalsAttempted)
+ 	public void setPercentOfGoalsMade(double newFieldGoalsMade, double newFieldGoalsAttempted)
  	{
- 		percentOfGoalsMade = (newFieldGoalsMade / newFieldGoalsAttempted * 100);
+ 		percentOfGoalsMade = Math.round(newFieldGoalsMade / newFieldGoalsAttempted * 100);
  	}
  	
- 	public static void setLongGain(double newLongGain)
+ 	public void setLongGain(double newLongGain)
  	{
- 		newLongGain = longGain;
+ 		longGain = newLongGain;
  	}
  	
- 	public static void setTeam(String newTeam)
+ 	public void setTeam(String newTeam)
  	{
- 		newTeam = team;
+ 		team = newTeam;
  	}
  
  	// display 
  	public String toString()
  	{
- 		return (name + " " + position);
+ 		return (name.toString() + " " + position.toString());
  	}
 }
 	 
