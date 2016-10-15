@@ -12,8 +12,8 @@
 public abstract class NFLPlayer implements Celebrator
 {
  	// variables
- 	public String name;
- 	public String position;
+ 	public  String name;
+ 	public  String position;
 
  	// stat variables
  	public int touchdowns;
@@ -67,7 +67,7 @@ public abstract class NFLPlayer implements Celebrator
  	public NFLPlayer()
  	{	}
  
- 	public void NFLPlayer(String newName, String newPosition)
+ 	public void nFLPlayer(String newName, String newPosition)
  	{
  		name = newName;
  		position = newPosition;
