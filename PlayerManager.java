@@ -1,15 +1,20 @@
 // FINAL PROJECT
 import java.util.*;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
+import java.applet.*;
 
-public class PlayerManager extends NFLPlayer implements Celebrator{	
+
+
+public class PlayerManager extends Applet{	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	// Create player objects to hold player attributes
 	static ArrayList<NFLPlayer> players = new ArrayList<>();
 	static ArrayList<NFLPlayer> chosenPlayers = new ArrayList<>();
 	
-	public static void main(String[] args) {
+	public void init() {
 		startGame();
 				
 	}
@@ -53,9 +58,7 @@ public class PlayerManager extends NFLPlayer implements Celebrator{
 		}				
 	}
 	
-	
-	
-	
+
 	@Override
 	public String toString()
 	{
@@ -94,6 +97,7 @@ public class PlayerManager extends NFLPlayer implements Celebrator{
 	// get user input from available list
 	public static void getAvailableListUserInput()
 	{
+		@SuppressWarnings("resource")
 		Scanner input = new Scanner(System.in);
 		System.out.print("\nEnter a player number to add or remove, \"A\", \"C\", or \"F\": ");
 		String usersChoice = input.next();
@@ -137,6 +141,7 @@ public class PlayerManager extends NFLPlayer implements Celebrator{
 	// get user input from available list
 		public static void getChosenListUserInput()
 		{
+			@SuppressWarnings("resource")
 			Scanner input = new Scanner(System.in);
 			System.out.print("\nEnter a player number to add or remove, \"A\", \"C\", or \"F\": ");
 			String usersChoice = input.next();
@@ -225,6 +230,7 @@ public class PlayerManager extends NFLPlayer implements Celebrator{
 		}
 		
 		// play again or exit game?
+		@SuppressWarnings("resource")
 		Scanner input = new Scanner(System.in);
 		System.out.print("\nDo you want to play again? Enter \"Y\" to start or \"N\" to end game:");
 		String start = input.next();
@@ -249,7 +255,17 @@ public class PlayerManager extends NFLPlayer implements Celebrator{
 		chosenPlayers.clear();
 		System.out.println("------NFL DRAFT BOARD------");
 		System.out.println("Pick Your Winning Team");
+		System.out.println("     ___________________    ");
+		System.out.println("   \u2215|                   |\\   ");
+		System.out.println("  \u2215||                   ||\\ ");
+		System.out.println(" \u2215 ||                   || \\");
+		System.out.println("|  ||   |-|-|-|-|-|-|   ||  |");
+		System.out.println(" \\ ||                   || /");
+		System.out.println("  \\||                   ||/ ");
+		System.out.println("   \\|___________________|/   ");
 		
+		
+		@SuppressWarnings("resource")
 		Scanner input = new Scanner(System.in);
 		System.out.print("Enter \"Y\" to start:");
 		String start = input.next();
@@ -282,7 +298,7 @@ public class PlayerManager extends NFLPlayer implements Celebrator{
 	{		
 		//Quarterbacks
 		OffensivePlayer blakeBortles = new OffensivePlayer();
-		blakeBortles.NFLPlayer("Blake Bortles", "QB");
+		blakeBortles.nFLPlayer("Blake Bortles", "QB");
 		blakeBortles.setYards(1050);
 		blakeBortles.setInterceptions(6);
 		blakeBortles.setTouchdowns(7);
@@ -293,7 +309,7 @@ public class PlayerManager extends NFLPlayer implements Celebrator{
 		blakeBortles.setArrayIndex (players.indexOf(blakeBortles));
 		
 		OffensivePlayer mattRyan = new OffensivePlayer();
-		mattRyan.NFLPlayer("Matt Ryan", "QB");
+		mattRyan.nFLPlayer("Matt Ryan", "QB");
 		mattRyan.setYards(1473);
 		mattRyan.setInterceptions(2);
 		mattRyan.setTouchdowns(11);
@@ -304,7 +320,7 @@ public class PlayerManager extends NFLPlayer implements Celebrator{
 		mattRyan.setArrayIndex (players.indexOf(mattRyan));
 			
 		OffensivePlayer samBradford = new OffensivePlayer();
-		samBradford.NFLPlayer("Sam Bradford", "QB");
+		samBradford.nFLPlayer("Sam Bradford", "QB");
 		samBradford.setYards(457);
 		samBradford.setInterceptions(0);
 		samBradford.setTouchdowns(3);
@@ -316,7 +332,7 @@ public class PlayerManager extends NFLPlayer implements Celebrator{
 		samBradford.setArrayIndex (players.indexOf(samBradford));
 		
 		OffensivePlayer drewBrees = new OffensivePlayer();
-		drewBrees.NFLPlayer("Drew Brees", "QB");
+		drewBrees.nFLPlayer("Drew Brees", "QB");
 		drewBrees.setYards(1269);
 		drewBrees.setInterceptions(3);
 		drewBrees.setTouchdowns(10);
@@ -327,7 +343,7 @@ public class PlayerManager extends NFLPlayer implements Celebrator{
 		drewBrees.setArrayIndex (players.indexOf(drewBrees));
 		
 		OffensivePlayer derekCarr = new OffensivePlayer();
-		derekCarr.NFLPlayer("Derek Carr", "QB");
+		derekCarr.nFLPlayer("Derek Carr", "QB");
 		derekCarr.setYards(1066);
 		derekCarr.setInterceptions(1);
 		derekCarr.setTouchdowns(9);
@@ -339,7 +355,7 @@ public class PlayerManager extends NFLPlayer implements Celebrator{
 		
 		// running backs
 		OffensivePlayer ameerAbdullah = new OffensivePlayer();
-		ameerAbdullah.NFLPlayer("Ameer Abdullah", "RB");
+		ameerAbdullah.nFLPlayer("Ameer Abdullah", "RB");
 		ameerAbdullah.setCareerValue(18);
 		ameerAbdullah.setYards(101);
 		ameerAbdullah.setAverageYardsPerCar(ameerAbdullah.getYards(), ameerAbdullah.getCareerValue());
@@ -349,7 +365,7 @@ public class PlayerManager extends NFLPlayer implements Celebrator{
 		ameerAbdullah.setArrayIndex (players.indexOf(ameerAbdullah));
 					
 		OffensivePlayer jayAjayi = new OffensivePlayer();
-		jayAjayi.NFLPlayer("Jay Ajayi", "RB");
+		jayAjayi.nFLPlayer("Jay Ajayi", "RB");
 		jayAjayi.setCareerValue(18);
 		jayAjayi.setYards(75);
 		jayAjayi.setAverageYardsPerCar(jayAjayi.getYards(), jayAjayi.getCareerValue());
@@ -359,7 +375,7 @@ public class PlayerManager extends NFLPlayer implements Celebrator{
 		jayAjayi.setArrayIndex (players.indexOf(jayAjayi));
 			
 		OffensivePlayer javoriusAllen = new OffensivePlayer();
-		javoriusAllen.NFLPlayer("Javorius Allen", "RB");
+		javoriusAllen.nFLPlayer("Javorius Allen", "RB");
 		javoriusAllen.setCareerValue(3);
 		javoriusAllen.setYards(13);
 		javoriusAllen.setAverageYardsPerCar(javoriusAllen.getYards(), javoriusAllen.getCareerValue());
@@ -369,7 +385,7 @@ public class PlayerManager extends NFLPlayer implements Celebrator{
 		javoriusAllen.setArrayIndex (players.indexOf(javoriusAllen));
 		
 		OffensivePlayer cameronArtisPayne = new OffensivePlayer();
-		cameronArtisPayne.NFLPlayer("Cameron Artis-Payne", "RB");
+		cameronArtisPayne.nFLPlayer("Cameron Artis-Payne", "RB");
 		cameronArtisPayne.setCareerValue(18);
 		cameronArtisPayne.setYards(59);
 		cameronArtisPayne.setAverageYardsPerCar(cameronArtisPayne.getYards(), cameronArtisPayne.getCareerValue());
@@ -379,7 +395,7 @@ public class PlayerManager extends NFLPlayer implements Celebrator{
 		cameronArtisPayne.setArrayIndex (players.indexOf(cameronArtisPayne));
 			
 		OffensivePlayer mattAsiata = new OffensivePlayer();
-		mattAsiata.NFLPlayer("Matt Asiata", "RB");
+		mattAsiata.nFLPlayer("Matt Asiata", "RB");
 		mattAsiata.setCareerValue(16);
 		mattAsiata.setYards(42);
 		mattAsiata.setAverageYardsPerCar(mattAsiata.getYards(), mattAsiata.getCareerValue());
@@ -390,7 +406,7 @@ public class PlayerManager extends NFLPlayer implements Celebrator{
 		
 		// tight Ends
 		OffensivePlayer garyBarnidge = new OffensivePlayer();
-		garyBarnidge.NFLPlayer("Gary Barnidge", "TE");
+		garyBarnidge.nFLPlayer("Gary Barnidge", "TE");
 		garyBarnidge.setReceptions(16);
 		garyBarnidge.setYards(160);
 		garyBarnidge.setAverageYardsPerReception(garyBarnidge.getYards(), garyBarnidge.getReceptions());
@@ -400,7 +416,7 @@ public class PlayerManager extends NFLPlayer implements Celebrator{
 		garyBarnidge.setArrayIndex (players.indexOf(garyBarnidge));
 		
 		OffensivePlayer blakeBell = new OffensivePlayer();
-		blakeBell.NFLPlayer("Blake Bell", "TE");
+		blakeBell.nFLPlayer("Blake Bell", "TE");
 		blakeBell.setReceptions(1);
 		blakeBell.setYards(6);
 		blakeBell.setAverageYardsPerReception(blakeBell.getYards(), blakeBell.getReceptions());
@@ -410,7 +426,7 @@ public class PlayerManager extends NFLPlayer implements Celebrator{
 		blakeBell.setArrayIndex (players.indexOf(blakeBell));
 		
 		OffensivePlayer martellusBennett = new OffensivePlayer();
-		martellusBennett.NFLPlayer("Martellus Bennett", "TE");
+		martellusBennett.nFLPlayer("Martellus Bennett", "TE");
 		martellusBennett.setReceptions(15);
 		martellusBennett.setYards(247);
 		martellusBennett.setAverageYardsPerReception(martellusBennett.getYards(), martellusBennett.getReceptions());
@@ -420,7 +436,7 @@ public class PlayerManager extends NFLPlayer implements Celebrator{
 		martellusBennett.setArrayIndex (players.indexOf(martellusBennett));
 		
 		OffensivePlayer brentCelek = new OffensivePlayer();
-		brentCelek.NFLPlayer("Brent Celek", "TE");
+		brentCelek.nFLPlayer("Brent Celek", "TE");
 		brentCelek.setReceptions(4);
 		brentCelek.setYards(72);
 		brentCelek.setAverageYardsPerReception(brentCelek.getYards(), brentCelek.getReceptions());
@@ -430,7 +446,7 @@ public class PlayerManager extends NFLPlayer implements Celebrator{
 		brentCelek.setArrayIndex (players.indexOf(brentCelek));
 		
 		OffensivePlayer garrettCelek = new OffensivePlayer();
-		garrettCelek.NFLPlayer("Garrett Celek", "TE");
+		garrettCelek.nFLPlayer("Garrett Celek", "TE");
 		garrettCelek.setReceptions(10);
 		garrettCelek.setYards(131);
 		garrettCelek.setAverageYardsPerReception(garrettCelek.getYards(), garrettCelek.getReceptions());
@@ -441,7 +457,7 @@ public class PlayerManager extends NFLPlayer implements Celebrator{
 		
 		// wide receivers
 		OffensivePlayer dougBaldwin = new OffensivePlayer();
-		dougBaldwin.NFLPlayer("Doug Baldwin", "WR");
+		dougBaldwin.nFLPlayer("Doug Baldwin", "WR");
 		dougBaldwin.setReceptions(24);
 		dougBaldwin.setYards(330);
 		dougBaldwin.setAverageYardsPerReception(dougBaldwin.getYards(), dougBaldwin.getReceptions());
@@ -451,7 +467,7 @@ public class PlayerManager extends NFLPlayer implements Celebrator{
 		dougBaldwin.setArrayIndex (players.indexOf(dougBaldwin));
 		
 		OffensivePlayer coleBeasley = new OffensivePlayer();
-		coleBeasley.NFLPlayer("Cole Beasley", "WR");
+		coleBeasley.nFLPlayer("Cole Beasley", "WR");
 		coleBeasley.setReceptions(23);
 		coleBeasley.setYards(279);
 		coleBeasley.setAverageYardsPerReception(coleBeasley.getYards(), coleBeasley.getReceptions());
@@ -461,7 +477,7 @@ public class PlayerManager extends NFLPlayer implements Celebrator{
 		coleBeasley.setArrayIndex (players.indexOf(coleBeasley));
 		
 		OffensivePlayer odellBeckham = new OffensivePlayer();
-		odellBeckham.NFLPlayer("Odell Beckham", "WR");
+		odellBeckham.nFLPlayer("Odell Beckham", "WR");
 		odellBeckham.setReceptions(19);
 		odellBeckham.setYards(280);
 		odellBeckham.setAverageYardsPerReception(odellBeckham.getYards(), odellBeckham.getReceptions());
@@ -471,7 +487,7 @@ public class PlayerManager extends NFLPlayer implements Celebrator{
 		odellBeckham.setArrayIndex (players.indexOf(odellBeckham));
 		
 		OffensivePlayer kelvinBenjamin = new OffensivePlayer();
-		kelvinBenjamin.NFLPlayer("Kelvin Benjamin", "WR");
+		kelvinBenjamin.nFLPlayer("Kelvin Benjamin", "WR");
 		kelvinBenjamin.setReceptions(16);
 		kelvinBenjamin.setYards(238);
 		kelvinBenjamin.setAverageYardsPerReception(kelvinBenjamin.getYards(), kelvinBenjamin.getReceptions());
@@ -481,7 +497,7 @@ public class PlayerManager extends NFLPlayer implements Celebrator{
 		kelvinBenjamin.setArrayIndex (players.indexOf(kelvinBenjamin));
 		
 		OffensivePlayer travisBenjamin = new OffensivePlayer();
-		travisBenjamin.NFLPlayer("Travis Benjamin", "WR");
+		travisBenjamin.nFLPlayer("Travis Benjamin", "WR");
 		travisBenjamin.setReceptions(21);
 		travisBenjamin.setYards(277);
 		travisBenjamin.setAverageYardsPerReception(travisBenjamin.getYards(), travisBenjamin.getReceptions());
@@ -493,7 +509,7 @@ public class PlayerManager extends NFLPlayer implements Celebrator{
 		
 		// 	Offensive linebacker	
 		OffensivePlayer brandenAlbert = new OffensivePlayer();
-		brandenAlbert.NFLPlayer("Branden Albert", "OL");
+		brandenAlbert.nFLPlayer("Branden Albert", "OL");
 		brandenAlbert.setGamesPlayed(3);
 		brandenAlbert.setGamesStarted(3);
 		brandenAlbert.setTeam("MIA");
@@ -501,7 +517,7 @@ public class PlayerManager extends NFLPlayer implements Celebrator{
 		brandenAlbert.setArrayIndex (players.indexOf(brandenAlbert));
 		
 		OffensivePlayer vadalAlexander = new OffensivePlayer();
-		vadalAlexander.NFLPlayer("Vadal Alexander", "OL");
+		vadalAlexander.nFLPlayer("Vadal Alexander", "OL");
 		vadalAlexander.setGamesPlayed(3);
 		vadalAlexander.setGamesStarted(1);
 		vadalAlexander.setTeam("OAK");
@@ -509,7 +525,7 @@ public class PlayerManager extends NFLPlayer implements Celebrator{
 		vadalAlexander.setArrayIndex (players.indexOf(vadalAlexander));
 		
 		OffensivePlayer allenBarbre = new OffensivePlayer();
-		allenBarbre.NFLPlayer("Allen Barbre", "OL");
+		allenBarbre.nFLPlayer("Allen Barbre", "OL");
 		allenBarbre.setGamesPlayed(3);
 		allenBarbre.setGamesStarted(3);
 		allenBarbre.setTeam("PHI");
@@ -517,7 +533,7 @@ public class PlayerManager extends NFLPlayer implements Celebrator{
 		allenBarbre.setArrayIndex (players.indexOf(allenBarbre));
 		
 		OffensivePlayer donBarclay = new OffensivePlayer();
-		donBarclay.NFLPlayer("Don Barclay", "OL");
+		donBarclay.nFLPlayer("Don Barclay", "OL");
 		donBarclay.setGamesPlayed(3);
 		donBarclay.setGamesStarted(0);
 		donBarclay.setTeam("GB");
@@ -525,7 +541,7 @@ public class PlayerManager extends NFLPlayer implements Celebrator{
 		donBarclay.setArrayIndex (players.indexOf(donBarclay));
 		
 		OffensivePlayer timBarnes = new OffensivePlayer();
-		timBarnes.NFLPlayer("Tim Barnes", "OL");
+		timBarnes.nFLPlayer("Tim Barnes", "OL");
 		timBarnes.setGamesPlayed(4);
 		timBarnes.setGamesStarted(4);
 		timBarnes.setTeam("LA");
@@ -535,7 +551,7 @@ public class PlayerManager extends NFLPlayer implements Celebrator{
 		
 		// defensive linebackers
 		DefensivePlayer genoAtkins = new DefensivePlayer();
-		genoAtkins.NFLPlayer("Geno Atkins", "DL");
+		genoAtkins.nFLPlayer("Geno Atkins", "DL");
 		genoAtkins.setTackles(11);
 		genoAtkins.setSacks(2.5);
 		genoAtkins.setForcedFumbles(0);
@@ -544,7 +560,7 @@ public class PlayerManager extends NFLPlayer implements Celebrator{
 		genoAtkins.setArrayIndex (players.indexOf(genoAtkins));
 				
 		DefensivePlayer denicoAutry = new DefensivePlayer();
-		denicoAutry.NFLPlayer("Denico Autry", "DL");
+		denicoAutry.nFLPlayer("Denico Autry", "DL");
 		denicoAutry.setTackles(5);
 		denicoAutry.setSacks(1.0);
 		denicoAutry.setForcedFumbles(0);
@@ -553,7 +569,7 @@ public class PlayerManager extends NFLPlayer implements Celebrator{
 		denicoAutry.setArrayIndex (players.indexOf(denicoAutry));
 		
 		DefensivePlayer cliffAvril = new DefensivePlayer();
-		cliffAvril.NFLPlayer("Cliff Avril", "DL");
+		cliffAvril.nFLPlayer("Cliff Avril", "DL");
 		cliffAvril.setTackles(10);
 		cliffAvril.setSacks(2.0);
 		cliffAvril.setForcedFumbles(1);
@@ -562,7 +578,7 @@ public class PlayerManager extends NFLPlayer implements Celebrator{
 		cliffAvril.setArrayIndex (players.indexOf(cliffAvril));
 		
 		DefensivePlayer robertAyers = new DefensivePlayer();
-		robertAyers.NFLPlayer("Robert Ayers", "DL");
+		robertAyers.nFLPlayer("Robert Ayers", "DL");
 		robertAyers.setTackles(4);
 		robertAyers.setSacks(1.0);
 		robertAyers.setForcedFumbles(0);
@@ -571,7 +587,7 @@ public class PlayerManager extends NFLPlayer implements Celebrator{
 		robertAyers.setArrayIndex (players.indexOf(robertAyers));
 		
 		DefensivePlayer jonathanBabineaux = new DefensivePlayer();
-		jonathanBabineaux.NFLPlayer("Jonathan Babineaux", "DL");
+		jonathanBabineaux.nFLPlayer("Jonathan Babineaux", "DL");
 		jonathanBabineaux.setTackles(5);
 		jonathanBabineaux.setSacks(0.0);
 		jonathanBabineaux.setForcedFumbles(0);
@@ -581,7 +597,7 @@ public class PlayerManager extends NFLPlayer implements Celebrator{
 	
 		// Linebackers	
 		DefensivePlayer djAlexander = new DefensivePlayer();
-		djAlexander.NFLPlayer("D.J. Alexander", "LB");
+		djAlexander.nFLPlayer("D.J. Alexander", "LB");
 		djAlexander.setTackles(2);
 		djAlexander.setSacks(0.0);
 		djAlexander.setForcedFumbles(0);
@@ -590,7 +606,7 @@ public class PlayerManager extends NFLPlayer implements Celebrator{
 		djAlexander.setArrayIndex (players.indexOf(djAlexander));
 		
 		DefensivePlayer lorenzoAlexander = new DefensivePlayer();
-		lorenzoAlexander.NFLPlayer("Lorenzo Alexander", "LB");
+		lorenzoAlexander.nFLPlayer("Lorenzo Alexander", "LB");
 		lorenzoAlexander.setTackles(21);
 		lorenzoAlexander.setSacks(4.0);
 		lorenzoAlexander.setForcedFumbles(2);
@@ -599,7 +615,7 @@ public class PlayerManager extends NFLPlayer implements Celebrator{
 		lorenzoAlexander.setArrayIndex (players.indexOf(lorenzoAlexander));
 		
 		DefensivePlayer kwonAlexander = new DefensivePlayer();
-		kwonAlexander.NFLPlayer("Kwon Alexander", "LB");
+		kwonAlexander.nFLPlayer("Kwon Alexander", "LB");
 		kwonAlexander.setTackles(38);
 		kwonAlexander.setSacks(2.0);
 		kwonAlexander.setForcedFumbles(0);
@@ -609,7 +625,7 @@ public class PlayerManager extends NFLPlayer implements Celebrator{
 		kwonAlexander.setArrayIndex (players.indexOf(kwonAlexander));
 		
 		DefensivePlayer kikoAlonso = new DefensivePlayer();
-		kikoAlonso.NFLPlayer("Kiko Alonso", "LB");
+		kikoAlonso.nFLPlayer("Kiko Alonso", "LB");
 		kikoAlonso.setTackles(38);
 		kikoAlonso.setSacks(0.0);
 		kikoAlonso.setForcedFumbles(0);
@@ -618,7 +634,7 @@ public class PlayerManager extends NFLPlayer implements Celebrator{
 		kikoAlonso.setArrayIndex (players.indexOf(kikoAlonso));
 		
 		DefensivePlayer jonathanAnderson = new DefensivePlayer();
-		jonathanAnderson.NFLPlayer("Jonathan Anderson", "LB");
+		jonathanAnderson.nFLPlayer("Jonathan Anderson", "LB");
 		jonathanAnderson.setTackles(4);
 		jonathanAnderson.setSacks(0.0);
 		jonathanAnderson.setForcedFumbles(0);
@@ -628,7 +644,7 @@ public class PlayerManager extends NFLPlayer implements Celebrator{
 		
 		// Defensive backers
 		DefensivePlayer beneBenwikere = new DefensivePlayer();
-		beneBenwikere.NFLPlayer("Bene' Benwikere", "DB");
+		beneBenwikere.nFLPlayer("Bene' Benwikere", "DB");
 		beneBenwikere.setTackles(10);
 		beneBenwikere.setSacks(0.0);
 		beneBenwikere.setForcedFumbles(0);
@@ -638,7 +654,7 @@ public class PlayerManager extends NFLPlayer implements Celebrator{
 		beneBenwikere.setArrayIndex (players.indexOf(beneBenwikere));
 				
 		DefensivePlayer natBerhe = new DefensivePlayer();
-		natBerhe.NFLPlayer("Nat Berhe", "DB");
+		natBerhe.nFLPlayer("Nat Berhe", "DB");
 		natBerhe.setTackles(14);
 		natBerhe.setSacks(0.0);
 		natBerhe.setForcedFumbles(1);
@@ -647,7 +663,7 @@ public class PlayerManager extends NFLPlayer implements Celebrator{
 		natBerhe.setArrayIndex (players.indexOf(natBerhe));
 		
 		DefensivePlayer ericBerry = new DefensivePlayer();
-		ericBerry.NFLPlayer("Eric Berry", "DB");
+		ericBerry.nFLPlayer("Eric Berry", "DB");
 		ericBerry.setTackles(17);
 		ericBerry.setSacks(0.0);
 		ericBerry.setForcedFumbles(0);
@@ -657,7 +673,7 @@ public class PlayerManager extends NFLPlayer implements Celebrator{
 		ericBerry.setArrayIndex (players.indexOf(ericBerry));
 		
 		DefensivePlayer antoineBethea = new DefensivePlayer();
-		antoineBethea.NFLPlayer("Antoine Bethea", "DB");
+		antoineBethea.nFLPlayer("Antoine Bethea", "DB");
 		antoineBethea.setTackles(28);
 		antoineBethea.setSacks(0.0);
 		antoineBethea.setForcedFumbles(1);
@@ -667,7 +683,7 @@ public class PlayerManager extends NFLPlayer implements Celebrator{
 		antoineBethea.setArrayIndex (players.indexOf(antoineBethea));
 		
 		DefensivePlayer justinBethel = new DefensivePlayer();
-		justinBethel.NFLPlayer("Justin Bethel", "DB");
+		justinBethel.nFLPlayer("Justin Bethel", "DB");
 		justinBethel.setTackles(4);
 		justinBethel.setSacks(0.0);
 		justinBethel.setForcedFumbles(0);
@@ -677,7 +693,7 @@ public class PlayerManager extends NFLPlayer implements Celebrator{
 		
 	// Kickers	
 		OffensivePlayer joshBrown = new OffensivePlayer();
-		joshBrown.NFLPlayer("Josh Brown", "K");
+		joshBrown.nFLPlayer("Josh Brown", "K");
 		joshBrown.setFieldGoalsAttempted(6);
 		joshBrown.setFieldGoalsMade(5);
 		joshBrown.setPercentOfGoalsMade(joshBrown.getFieldGoalsMade(), joshBrown.getFieldGoalsAttempted());
@@ -687,7 +703,7 @@ public class PlayerManager extends NFLPlayer implements Celebrator{
 		joshBrown.setArrayIndex (players.indexOf(joshBrown));
 	
 		OffensivePlayer dustinHopkins = new OffensivePlayer();
-		dustinHopkins.NFLPlayer("Dustin Hopkins", "K");
+		dustinHopkins.nFLPlayer("Dustin Hopkins", "K");
 		dustinHopkins.setFieldGoalsAttempted(12);
 		dustinHopkins.setFieldGoalsMade(12);
 		dustinHopkins.setPercentOfGoalsMade(dustinHopkins.getFieldGoalsMade(), dustinHopkins.getFieldGoalsAttempted());
@@ -697,7 +713,7 @@ public class PlayerManager extends NFLPlayer implements Celebrator{
 		dustinHopkins.setArrayIndex (players.indexOf(dustinHopkins));
 		
 		OffensivePlayer mikeNugent = new OffensivePlayer();
-		mikeNugent.NFLPlayer("Mike Nugent", "K");
+		mikeNugent.nFLPlayer("Mike Nugent", "K");
 		mikeNugent.setFieldGoalsAttempted(13);
 		mikeNugent.setFieldGoalsMade(12);
 		mikeNugent.setPercentOfGoalsMade(mikeNugent.getFieldGoalsMade(), mikeNugent.getFieldGoalsAttempted());
@@ -707,7 +723,7 @@ public class PlayerManager extends NFLPlayer implements Celebrator{
 		mikeNugent.setArrayIndex (players.indexOf(mikeNugent));
 		
 		OffensivePlayer danCarpenter = new OffensivePlayer();
-		danCarpenter.NFLPlayer("Dan Carpenter", "K");
+		danCarpenter.nFLPlayer("Dan Carpenter", "K");
 		danCarpenter.setFieldGoalsAttempted(8);
 		danCarpenter.setFieldGoalsMade(6);
 		danCarpenter.setPercentOfGoalsMade(danCarpenter.getFieldGoalsMade(), danCarpenter.getFieldGoalsAttempted());
@@ -717,7 +733,7 @@ public class PlayerManager extends NFLPlayer implements Celebrator{
 		danCarpenter.setArrayIndex (players.indexOf(danCarpenter));
 		
 		OffensivePlayer chandlerCatanzaro = new OffensivePlayer();
-		chandlerCatanzaro.NFLPlayer("Chandler Catanzaro", "K");
+		chandlerCatanzaro.nFLPlayer("Chandler Catanzaro", "K");
 		chandlerCatanzaro.setFieldGoalsAttempted(6);
 		chandlerCatanzaro.setFieldGoalsMade(5);
 		chandlerCatanzaro.setPercentOfGoalsMade(chandlerCatanzaro.getFieldGoalsMade(), chandlerCatanzaro.getFieldGoalsAttempted());
@@ -726,38 +742,5 @@ public class PlayerManager extends NFLPlayer implements Celebrator{
 		players.add(chandlerCatanzaro);
 		chandlerCatanzaro.setArrayIndex (players.indexOf(chandlerCatanzaro));
 	}	
-	
-	
-	// implement celebrator
-	@Override
-	public void celebrate()
-	{
-		System.out.println(name + " does cartwheels to celebrate his draft.");
-	}
-	@Override
-	public void celebration1()
-	{
-		System.out.println(name + " shouts to celebrate his draft.");
-	}
-	@Override
-	public void celebration2()
-	{
-		System.out.println(name + " points upward to celebrate his draft.");
-	}
-	@Override
-	public void celebration3()
-	{
-		System.out.println(name + " smiles to celebrate his draft.");
-	}
-	@Override
-	public void celebration4()
-	{
-		System.out.println(name + " laughs to celebrate his draft.");
-	}
-	@Override
-	public void celebration5()
-	{
-		System.out.println(name + " hugs his mom to celebrate his draft.");	
-	}
 			
 }
